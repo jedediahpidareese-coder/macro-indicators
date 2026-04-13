@@ -1,14 +1,30 @@
+import { execFile } from 'node:child_process'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
+import { promisify } from 'node:util'
 import AdmZip from 'adm-zip'
 import Papa from 'papaparse'
 
+const execFileAsync = promisify(execFile)
 const GENERATED_AT = new Date().toISOString()
 const BUILD_DATE = GENERATED_AT.slice(0, 10)
 const CURRENT_YEAR = new Date().getUTCFullYear()
-const LOOKBACK_YEARS = Number(process.env.REFRESH_LOOKBACK_YEARS ?? 12)
+const LOOKBACK_YEARS = Number(process.env.REFRESH_LOOKBACK_YEARS ?? 20)
 const START_YEAR = CURRENT_YEAR - LOOKBACK_YEARS
 const OUTPUT_PATH = resolve(process.cwd(), 'public', 'data', 'dashboard.json')
+const REQUEST_TIMEOUT_MS = 30000
+const BLS_WINDOW_SPAN = 10
+const MONTHLY_HISTORY_POINTS = 120
+const PAYROLL_HISTORY_POINTS = 96
+const QUARTERLY_HISTORY_POINTS = 40
+const ANNUAL_HISTORY_POINTS = 25
+const DAILY_HISTORY_POINTS = 365
+const FRED_API_KEY = process.env.FRED_API_KEY?.trim() || ''
+const BLS_API_KEY = process.env.BLS_API_KEY?.trim() || ''
+const DEFAULT_HEADERS = {
+  accept: '*/*',
+  'user-agent': 'macro-signals-build/1.0',
+}
 
 const monthLabelFormatter = new Intl.DateTimeFormat('en-US', {
   month: 'short',
@@ -26,8 +42,21 @@ function log(message) {
   console.log(`[build-data] ${message}`)
 }
 
+function buildRequestOptions(options = {}) {
+  const { headers, ...rest } = options
+
+  return {
+    ...rest,
+    headers: {
+      ...DEFAULT_HEADERS,
+      ...headers,
+    },
+    signal: rest.signal ?? AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+  }
+}
+
 async function fetchText(url, options) {
-  const response = await fetch(url, options)
+  const response = await fetch(url, buildRequestOptions(options))
 
   if (!response.ok) {
     const body = await response.text()
@@ -38,7 +67,7 @@ async function fetchText(url, options) {
 }
 
 async function fetchJson(url, options) {
-  const response = await fetch(url, options)
+  const response = await fetch(url, buildRequestOptions(options))
 
   if (!response.ok) {
     const body = await response.text()
@@ -48,8 +77,45 @@ async function fetchJson(url, options) {
   return response.json()
 }
 
+async function fetchTextWithCurl(url) {
+  const command = process.platform === 'win32' ? 'curl.exe' : 'curl'
+
+  try {
+    const { stdout } = await execFileAsync(
+      command,
+      [
+        '-fsSL',
+        '--retry',
+        '3',
+        '--connect-timeout',
+        '20',
+        '--max-time',
+        '45',
+        '-A',
+        DEFAULT_HEADERS['user-agent'],
+        url,
+      ],
+      {
+        encoding: 'utf8',
+        maxBuffer: 25 * 1024 * 1024,
+        timeout: 50000,
+      },
+    )
+
+    return stdout
+  } catch (error) {
+    const stderr =
+      error && typeof error === 'object' && 'stderr' in error
+        ? String(error.stderr).trim()
+        : ''
+    const message =
+      stderr || (error instanceof Error ? error.message : String(error))
+    throw new Error(`curl fallback failed: ${message}`)
+  }
+}
+
 async function fetchZipCsv(url) {
-  const response = await fetch(url)
+  const response = await fetch(url, buildRequestOptions())
 
   if (!response.ok) {
     const body = await response.text()
@@ -117,6 +183,19 @@ function toQuarterDate(periodKey) {
   }
   const [month, day] = quarterMap[quarterCode]
   return `${year}-${month}-${day}`
+}
+
+function buildYearWindows(startYear, endYear, span = BLS_WINDOW_SPAN) {
+  const windows = []
+
+  for (let windowStart = startYear; windowStart <= endYear; windowStart += span) {
+    windows.push({
+      startYear: windowStart,
+      endYear: Math.min(windowStart + span - 1, endYear),
+    })
+  }
+
+  return windows
 }
 
 function uniquePoints(points) {
@@ -277,56 +356,101 @@ function buildIndicator({
   return indicator
 }
 
-async function fetchBlsSeriesMap(seriesIds) {
-  const payload = {
-    seriesid: seriesIds,
-    startyear: String(START_YEAR),
-    endyear: String(CURRENT_YEAR),
+async function fetchBlsSeriesWindow(seriesId, startYear, endYear) {
+  const url = new URL(`https://api.bls.gov/publicAPI/v2/timeseries/data/${seriesId}`)
+  url.searchParams.set('startyear', String(startYear))
+  url.searchParams.set('endyear', String(endYear))
+
+  if (BLS_API_KEY) {
+    url.searchParams.set('registrationkey', BLS_API_KEY)
   }
 
-  const json = await fetchJson('https://api.bls.gov/publicAPI/v2/timeseries/data/', {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify(payload),
-  })
+  const json = await fetchJson(url.toString())
 
   if (json.status !== 'REQUEST_SUCCEEDED') {
     throw new Error(`BLS request failed with status ${json.status}`)
   }
 
-  return Object.fromEntries(
-    json.Results.series.map((series) => {
-      const normalized = series.data
-        .filter((item) => /^M\d{2}$/.test(item.period))
-        .map((item) => {
-          const date = toMonthDate(item.year, item.period)
-          return {
-            date,
-            label: labelForDate(date, 'monthly'),
-            value: safeNumber(item.value),
-          }
-        })
-        .filter((item) => item.value != null)
-        .sort((left, right) => left.date.localeCompare(right.date))
+  if (Array.isArray(json.message) && json.message.length > 0) {
+    log(`BLS ${seriesId} ${startYear}-${endYear}: ${json.message.join(' | ')}`)
+  }
 
-      return [series.seriesID, normalized]
-    }),
+  return json.Results?.series?.[0]?.data ?? []
+}
+
+function normalizeBlsRows(rows) {
+  return rows
+    .filter((item) => /^M\d{2}$/.test(item.period))
+    .map((item) => {
+      const date = toMonthDate(item.year, item.period)
+      return {
+        date,
+        label: labelForDate(date, 'monthly'),
+        value: safeNumber(item.value),
+      }
+    })
+    .filter((item) => item.value != null)
+    .sort((left, right) => left.date.localeCompare(right.date))
+}
+
+async function fetchBlsSeriesMap(seriesIds) {
+  const windows = buildYearWindows(START_YEAR, CURRENT_YEAR)
+  const bySeries = new Map(seriesIds.map((seriesId) => [seriesId, new Map()]))
+
+  for (const seriesId of seriesIds) {
+    for (const { startYear, endYear } of windows) {
+      const rows = await fetchBlsSeriesWindow(seriesId, startYear, endYear)
+
+      for (const point of normalizeBlsRows(rows)) {
+        bySeries.get(seriesId).set(point.date, point)
+      }
+    }
+  }
+
+  return Object.fromEntries(
+    seriesIds.map((seriesId) => [
+      seriesId,
+      [...bySeries.get(seriesId).values()].sort((left, right) =>
+        left.date.localeCompare(right.date),
+      ),
+    ]),
   )
 }
 
-async function buildBlsIndicators() {
-  const blsSeries = await fetchBlsSeriesMap([
-    'LNS14000000',
-    'CES0000000001',
-    'CUUR0000SA0',
-    'CUUR0000SA0L1E',
+async function fetchBlsFallbackSeriesMap() {
+  const [unemployment, payrollLevels, headlineCpi, coreCpi] = await Promise.all([
+    fetchFredSeries('UNRATE'),
+    fetchFredSeries('PAYEMS'),
+    fetchFredSeries('CPIAUCSL'),
+    fetchFredSeries('CPILFESL'),
   ])
 
-  const unemployment = trimPoints(blsSeries.LNS14000000, 72)
-  const payrollLevels = trimPoints(blsSeries.CES0000000001, 73)
-  const payrollChanges = trimPoints(absoluteChange(payrollLevels), 60)
-  const headlineInflation = trimPoints(percentChange(blsSeries.CUUR0000SA0, 12), 72)
-  const coreInflation = trimPoints(percentChange(blsSeries.CUUR0000SA0L1E, 12), 72)
+  return {
+    LNS14000000: unemployment.points,
+    CES0000000001: payrollLevels.points,
+    CUUR0000SA0: headlineCpi.points,
+    CUUR0000SA0L1E: coreCpi.points,
+  }
+}
+
+function buildBlsIndicatorBlock(blsSeries, status, detail) {
+  const unemployment = trimPoints(blsSeries.LNS14000000, MONTHLY_HISTORY_POINTS)
+  const payrollLevels = trimPoints(
+    blsSeries.CES0000000001,
+    PAYROLL_HISTORY_POINTS + 1,
+  )
+  const payrollChanges = trimPoints(
+    absoluteChange(payrollLevels),
+    PAYROLL_HISTORY_POINTS,
+  )
+  const headlineInflation = trimPoints(
+    percentChange(blsSeries.CUUR0000SA0, 12),
+    MONTHLY_HISTORY_POINTS,
+  )
+  const coreInflation = trimPoints(
+    percentChange(blsSeries.CUUR0000SA0L1E, 12),
+    MONTHLY_HISTORY_POINTS,
+  )
   const inflationSeries = mergeSecondarySeries(headlineInflation, coreInflation)
   const latestCore = coreInflation.at(-1)
 
@@ -380,61 +504,122 @@ async function buildBlsIndicators() {
       {
         id: 'bls',
         name: 'BLS',
-        status: 'live',
-        detail: 'Direct public API pull for labor market and CPI series.',
+        status,
+        detail,
         link: 'https://www.bls.gov/developers/',
       },
     ],
   }
 }
 
-async function fetchFredSeries(seriesId) {
-  const apiKey = process.env.FRED_API_KEY
+async function buildBlsIndicators() {
+  try {
+    const blsSeries = await fetchBlsSeriesMap([
+      'LNS14000000',
+      'CES0000000001',
+      'CUUR0000SA0',
+      'CUUR0000SA0L1E',
+    ])
 
-  if (apiKey) {
+    return buildBlsIndicatorBlock(
+      blsSeries,
+      'live',
+      BLS_API_KEY
+        ? 'Direct BLS API pull for labor market and CPI series across the full configured history window.'
+        : 'Direct public BLS API pull for labor market and CPI series, merged across 10-year windows so current 2026 releases stay in the build.',
+    )
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error)
+    log(`BLS API failed; falling back to FRED-carried BLS series (${message})`)
+    const blsSeries = await fetchBlsFallbackSeriesMap()
+
+    return buildBlsIndicatorBlock(
+      blsSeries,
+      'fallback',
+      `BLS API refresh failed in this build (${message}); the dashboard is temporarily using current BLS-origin series carried through FRED instead.`,
+    )
+  }
+}
+
+function frequencyForFredSeries(seriesId) {
+  if (seriesId === 'A191RL1Q225SBEA') {
+    return 'quarterly'
+  }
+
+  if (seriesId === 'T10Y2Y') {
+    return 'daily'
+  }
+
+  return 'monthly'
+}
+
+async function fetchFredSeries(seriesId) {
+  if (FRED_API_KEY) {
     const url = new URL('https://api.stlouisfed.org/fred/series/observations')
     url.searchParams.set('series_id', seriesId)
-    url.searchParams.set('api_key', apiKey)
+    url.searchParams.set('api_key', FRED_API_KEY)
     url.searchParams.set('file_type', 'json')
     url.searchParams.set('observation_start', `${START_YEAR}-01-01`)
 
-    const json = await fetchJson(url.toString())
-    return json.observations
-      .map((item) => ({
-        date: item.date,
-        label: labelForDate(item.date, /^\d{4}-\d{2}-\d{2}$/.test(item.date) ? 'daily' : 'monthly'),
-        value: safeNumber(item.value),
-      }))
-      .filter((item) => item.value != null)
+    try {
+      const json = await fetchJson(url.toString())
+      return {
+        transport: 'api',
+        points: json.observations
+          .map((item) => ({
+            date: item.date,
+            label: labelForDate(item.date, frequencyForFredSeries(seriesId)),
+            value: safeNumber(item.value),
+          }))
+          .filter((item) => item.value != null),
+      }
+    } catch (error) {
+      log(
+        `FRED API failed for ${seriesId}; falling back to CSV export (${error instanceof Error ? error.message : String(error)})`,
+      )
+    }
   }
 
-  const csvText = await fetchText(`https://fred.stlouisfed.org/graph/fredgraph.csv?id=${seriesId}`)
+  const csvUrl = `https://fred.stlouisfed.org/graph/fredgraph.csv?id=${seriesId}`
+  let csvText
+  let transport = FRED_API_KEY ? 'csv' : 'fallback'
+
+  try {
+    csvText = await fetchText(csvUrl)
+  } catch (error) {
+    log(
+      `FRED fetch() failed for ${seriesId}; retrying with curl (${error instanceof Error ? error.message : String(error)})`,
+    )
+    csvText = await fetchTextWithCurl(csvUrl)
+    transport = 'curl'
+  }
+
   const parsed = Papa.parse(csvText, { header: true, skipEmptyLines: true }).data
 
-  return parsed
-    .map((row) => {
-      const keys = Object.keys(row)
-      const date = row[keys[0]]
-      const value = safeNumber(row[keys[1]])
-      return {
-        date,
-        label: labelForDate(
+  return {
+    transport,
+    points: parsed
+      .map((row) => {
+        const keys = Object.keys(row)
+        const date = row[keys[0]]
+        const value = safeNumber(row[keys[1]])
+        return {
           date,
-          /^\d{4}-\d{2}-\d{2}$/.test(date) && seriesId === 'T10Y2Y' ? 'daily' : date.endsWith('-01') && seriesId !== 'A191RL1Q225SBEA' ? 'monthly' : 'daily',
-        ),
-        value,
-      }
-    })
-    .filter((item) => item.value != null && item.date >= `${START_YEAR}-01-01`)
+          label: labelForDate(date, frequencyForFredSeries(seriesId)),
+          value,
+        }
+      })
+      .filter((item) => item.value != null && item.date >= `${START_YEAR}-01-01`),
+  }
 }
 
 async function buildFredIndicators() {
   const [
-    gdpGrowthRaw,
-    fedFundsRaw,
-    yieldSpreadRaw,
-    housingStartsRaw,
-    industrialProductionRaw,
+    gdpGrowthResult,
+    fedFundsResult,
+    yieldSpreadResult,
+    housingStartsResult,
+    industrialProductionResult,
   ] = await Promise.all([
     fetchFredSeries('A191RL1Q225SBEA'),
     fetchFredSeries('FEDFUNDS'),
@@ -443,49 +628,64 @@ async function buildFredIndicators() {
     fetchFredSeries('INDPRO'),
   ])
 
+  const fredTransports = [
+    gdpGrowthResult.transport,
+    fedFundsResult.transport,
+    yieldSpreadResult.transport,
+    housingStartsResult.transport,
+    industrialProductionResult.transport,
+  ]
+  const usedCurlFallback = fredTransports.includes('curl')
+  const usedCsvFallback =
+    usedCurlFallback || fredTransports.some((transport) => transport !== 'api')
+
   const gdpGrowth = trimPoints(
-    gdpGrowthRaw.map((point) => ({
+    gdpGrowthResult.points.map((point) => ({
       ...point,
       label: labelForDate(point.date, 'quarterly'),
     })),
-    28,
+    QUARTERLY_HISTORY_POINTS,
   )
   const fedFunds = trimPoints(
-    fedFundsRaw.map((point) => ({
+    fedFundsResult.points.map((point) => ({
       ...point,
       label: labelForDate(point.date, 'monthly'),
     })),
-    72,
+    MONTHLY_HISTORY_POINTS,
   )
   const yieldSpread = trimPoints(
-    yieldSpreadRaw.map((point) => ({
+    yieldSpreadResult.points.map((point) => ({
       ...point,
       label: labelForDate(point.date, 'daily'),
     })),
-    365,
+    DAILY_HISTORY_POINTS,
   )
   const housingStarts = trimPoints(
-    housingStartsRaw.map((point) => ({
+    housingStartsResult.points.map((point) => ({
       ...point,
       label: labelForDate(point.date, 'monthly'),
     })),
-    72,
+    MONTHLY_HISTORY_POINTS,
   )
   const industrialProduction = trimPoints(
-    industrialProductionRaw.map((point) => ({
+    industrialProductionResult.points.map((point) => ({
       ...point,
       label: labelForDate(point.date, 'monthly'),
     })),
-    72,
+    MONTHLY_HISTORY_POINTS,
   )
 
   const fredStatus = {
     id: 'fred',
     name: 'FRED',
-    status: process.env.FRED_API_KEY ? 'live' : 'fallback',
-    detail: process.env.FRED_API_KEY
-      ? 'Official FRED API is active.'
-      : 'Using the public FRED CSV export path because FRED_API_KEY is unset.',
+    status: FRED_API_KEY && !usedCsvFallback ? 'live' : 'fallback',
+    detail: FRED_API_KEY
+      ? usedCsvFallback
+        ? 'Official FRED API was configured, but at least one series fell back to the public CSV export path during this build.'
+        : 'Official FRED API is active for all configured series.'
+      : usedCurlFallback
+        ? 'Using the public FRED CSV export path with a curl retry fallback because FRED_API_KEY is unset.'
+        : 'Using the public FRED CSV export path because FRED_API_KEY is unset.',
     link: 'https://fred.stlouisfed.org/docs/api/fred/',
   }
 
@@ -628,8 +828,14 @@ async function buildBisIndicators() {
     throw new Error('Unable to locate BIS rows for US private-sector leverage')
   }
 
-  const debtService = trimPoints(bisQuarterSeries(debtServiceRecord), 28)
-  const privateCredit = trimPoints(bisQuarterSeries(creditRecord), 28)
+  const debtService = trimPoints(
+    bisQuarterSeries(debtServiceRecord),
+    QUARTERLY_HISTORY_POINTS,
+  )
+  const privateCredit = trimPoints(
+    bisQuarterSeries(creditRecord),
+    QUARTERLY_HISTORY_POINTS,
+  )
 
   return {
     indicators: [
@@ -718,7 +924,7 @@ async function buildWorldBankIndicators() {
         description: `The latest complete World Bank GDP growth estimate for the US is ${formatValue(gdpGrowth.at(-1).value, 'percent')} in ${gdpGrowth.at(-1).label}.`,
         rationale: 'Annual growth prints are discrete year-by-year observations, so bars are easier to compare than a smoothed line.',
         showZeroLine: true,
-        series: trimPoints(gdpGrowth, 15),
+        series: trimPoints(gdpGrowth, ANNUAL_HISTORY_POINTS),
       }),
       buildIndicator({
         id: 'worldbank-public-debt',
@@ -733,7 +939,7 @@ async function buildWorldBankIndicators() {
         deltaUnit: 'percentagePoints',
         description: `Central government debt was ${formatValue(publicDebt.at(-1).value, 'percentOfGdp')} of GDP in ${publicDebt.at(-1).label}.`,
         rationale: 'Debt ratios evolve gradually, so a line is the clearest way to show the medium-run trend.',
-        series: trimPoints(publicDebt, 15),
+        series: trimPoints(publicDebt, ANNUAL_HISTORY_POINTS),
       }),
     ],
     sourceStatus: [
@@ -752,8 +958,8 @@ function buildImfStatus() {
   return {
     id: 'imf',
     name: 'IMF',
-    status: 'skipped',
-    detail: `The IMF Data portal path was sign-in gated when this template was built on ${BUILD_DATE}; the adapter is left as an optional future extension rather than blocking the rest of the dashboard.`,
+    status: 'setup',
+    detail: `As of ${BUILD_DATE}, the IMF portal redirected anonymous API traffic to sign-in and the legacy dataservices endpoint was not reachable from this build environment. Add a working authenticated IMF export or API path if you want IMF included.`,
     link: 'https://data.imf.org/',
   }
 }
@@ -835,9 +1041,10 @@ function buildDashboard(indicators, sourceStatus) {
     sourceStatus,
     notes: [
       'The site is static: all source calls happen at build time, and the browser only reads a compiled JSON file.',
-      'FRED uses the official API when FRED_API_KEY is present and falls back to the public CSV export path when it is not.',
+      'FRED uses the official API when FRED_API_KEY is present and falls back to the public CSV export path, with a curl retry path to protect CI builds when fetch is flaky.',
       'FRED-carried series still show their original agency in the UI, including BEA, the Census Bureau, and the Board of Governors.',
-      `IMF is marked optional because the public portal path was sign-in gated on ${BUILD_DATE}.`,
+      'BLS history is fetched in public 10-year windows so the latest 2026 monthly releases still land even when the full lookback window is longer.',
+      `IMF is marked optional because the public portal redirected to sign-in on ${BUILD_DATE}.`,
     ],
   }
 }

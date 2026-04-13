@@ -59,7 +59,7 @@ export interface DashboardSection {
 export interface SourceStatus {
   id: string
   name: string
-  status: 'live' | 'fallback' | 'skipped' | 'error'
+  status: 'live' | 'fallback' | 'setup' | 'skipped' | 'error'
   detail: string
   link: string
 }

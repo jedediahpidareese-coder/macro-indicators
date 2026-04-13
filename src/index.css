@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Space+Grotesk:wght@400;500;700&display=swap');
 
 :root {
-  color: #10202d;
+  color: #13232c;
   background:
-    radial-gradient(circle at top left, rgba(177, 203, 192, 0.46), transparent 34%),
-    radial-gradient(circle at top right, rgba(226, 154, 115, 0.22), transparent 28%),
-    linear-gradient(180deg, #f6f0e4 0%, #efe7d9 48%, #f8f3ea 100%);
+    radial-gradient(circle at top left, rgba(103, 148, 136, 0.28), transparent 32%),
+    radial-gradient(circle at top right, rgba(208, 133, 92, 0.2), transparent 26%),
+    linear-gradient(160deg, #f7f2e8 0%, #eee4d6 54%, #fbf7ee 100%);
   font-family: 'Space Grotesk', sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -13,13 +13,17 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --canvas: rgba(255, 251, 245, 0.72);
-  --border: rgba(16, 32, 45, 0.11);
-  --muted: #586672;
+  --canvas: rgba(255, 251, 246, 0.84);
+  --canvas-strong: rgba(255, 253, 249, 0.94);
+  --border: rgba(19, 35, 44, 0.12);
+  --muted: #465666;
+  --soft: #60717d;
   --navy: #1f4c5b;
   --teal: #2b7a78;
   --rust: #c4683f;
-  --shadow: 0 20px 50px rgba(16, 32, 45, 0.09);
+  --hero-ink: #f5f8f4;
+  --hero-muted: rgba(235, 243, 239, 0.88);
+  --shadow: 0 22px 52px rgba(19, 35, 44, 0.1);
 }
 
 * {
@@ -112,6 +116,15 @@ a:hover {
   box-shadow: var(--shadow);
 }
 
+.chart-panel,
+.metric-card,
+.source-card,
+.footer,
+.state-card,
+.hero-copy {
+  background: var(--canvas-strong);
+}
+
 .hero-copy {
   padding: 2rem;
 }
@@ -137,7 +150,6 @@ a:hover {
 .source-card p,
 .panel-copy,
 .note-list,
-.highlight-list,
 .state-card p {
   color: var(--muted);
 }
@@ -160,13 +172,13 @@ a:hover {
 .hero-meta span {
   padding: 0.45rem 0.7rem;
   border-radius: 999px;
-  background: rgba(31, 76, 91, 0.08);
+  background: rgba(31, 76, 91, 0.09);
 }
 
 .hero-panel {
   padding: 1.5rem;
-  background: linear-gradient(180deg, rgba(31, 76, 91, 0.95), rgba(23, 44, 54, 0.95));
-  color: #eff7f3;
+  background: linear-gradient(180deg, rgba(27, 71, 83, 0.98), rgba(18, 40, 49, 0.98));
+  color: var(--hero-ink);
 }
 
 .hero-panel h2 {
@@ -174,6 +186,7 @@ a:hover {
   font-size: 1rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  color: var(--hero-ink);
 }
 
 .eyebrow {
@@ -190,9 +203,17 @@ a:hover {
   padding-left: 1.15rem;
 }
 
+.highlight-list {
+  color: var(--hero-muted);
+}
+
 .highlight-list li,
 .note-list li {
   margin-bottom: 0.7rem;
+}
+
+.highlight-list li::marker {
+  color: rgba(170, 223, 206, 0.92);
 }
 
 .pulse-grid {
@@ -232,7 +253,7 @@ a:hover {
 .metric-title p,
 .panel-title p {
   margin: 0;
-  color: var(--muted);
+  color: var(--soft);
   font-size: 0.88rem;
 }
 
@@ -284,7 +305,16 @@ a:hover {
 }
 
 .section-block,
-.sources-block,
+.sources-block {
+  margin-top: 1.25rem;
+  padding: 1.35rem;
+  background: rgba(255, 251, 246, 0.56);
+  border: 1px solid rgba(19, 35, 44, 0.08);
+  border-radius: 1.5rem;
+  box-shadow: 0 18px 42px rgba(19, 35, 44, 0.06);
+  backdrop-filter: blur(16px);
+}
+
 .footer {
   margin-top: 1.25rem;
   padding: 1.35rem;
@@ -328,7 +358,7 @@ a:hover {
   padding-top: 0.85rem;
   border-top: 1px solid rgba(16, 32, 45, 0.08);
   font-size: 0.86rem;
-  color: var(--muted);
+  color: var(--soft);
 }
 
 .source-grid {
@@ -339,6 +369,7 @@ a:hover {
 
 .source-card {
   padding: 1rem 1.1rem;
+  background: rgba(255, 253, 250, 0.96);
 }
 
 .status-pill {
@@ -359,10 +390,15 @@ a:hover {
   color: var(--rust);
 }
 
+.status-setup {
+  background: rgba(196, 104, 63, 0.16);
+  color: #9e5434;
+}
+
 .status-skipped,
 .status-error {
-  background: rgba(88, 102, 114, 0.12);
-  color: var(--muted);
+  background: rgba(96, 113, 125, 0.14);
+  color: var(--soft);
 }
 
 .footer {

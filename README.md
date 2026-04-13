@@ -19,8 +19,9 @@ Static US macro dashboard built from official public data sources. The site refr
 ## Source notes
 
 - FRED uses the official API if `FRED_API_KEY` is set.
-- If `FRED_API_KEY` is missing, the build falls back to FRED's public CSV export path.
-- IMF is left as an optional extension. The public IMF portal path appeared sign-in gated when this template was built on 2026-04-12, so the dashboard does not block on it.
+- If `FRED_API_KEY` is missing, the build falls back to FRED's public CSV export path and retries with `curl` if the runner's `fetch()` call is flaky.
+- BLS uses the public API by default and merges 10-year request windows so the latest monthly releases still show up even when the configured history window is longer.
+- IMF is left as an optional extension. As of 2026-04-13, the public IMF portal redirects anonymous API traffic to sign-in, and the legacy `dataservices.imf.org` path was not reachable from this build environment. If you want IMF included, provide a working authenticated export or API path.
 - Several FRED-carried series still surface their original agency in the UI, including BEA, the Census Bureau, and the Federal Reserve Board.
 
 ## Local development
@@ -54,16 +55,18 @@ Static US macro dashboard built from official public data sources. The site refr
 Copy `.env.example` to `.env` if you want local secrets.
 
 - `FRED_API_KEY`
-  Optional. Enables the official FRED API instead of the public CSV fallback.
+  Optional but recommended. Enables the official FRED API instead of the public CSV fallback.
+- `BLS_API_KEY`
+  Optional. Enables registered-key BLS requests, though the public API path works without it.
 - `REFRESH_LOOKBACK_YEARS`
-  Optional. Defaults to `12`.
+  Optional. Defaults to `20`.
 
 ## Cloud deployment
 
 This repo is configured for GitHub Pages because it is simple, cheap, and does not require an always-on server.
 
 1. Create a GitHub repository and push this project.
-2. In GitHub, add a repository secret named `FRED_API_KEY` if you want the official FRED API path.
+2. In GitHub, add repository secrets named `FRED_API_KEY` and `BLS_API_KEY` if you want the official keyed API paths.
 3. In repository settings, enable GitHub Pages and set the source to `GitHub Actions`.
 4. The workflow in `.github/workflows/deploy.yml` will:
    - run on pushes to `main`
