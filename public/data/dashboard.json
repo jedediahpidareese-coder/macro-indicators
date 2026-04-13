@@ -1,0 +1,5079 @@
+{
+  "title": "Macro Signals",
+  "deck": "A static US macro dashboard compiled from official public datasets. The build pipeline refreshes the data first, then ships a simple front-end bundle that can live on GitHub Pages or another static host.",
+  "generatedAt": "2026-04-13T04:19:25.460Z",
+  "highlights": [
+    "Unemployment was 3.8% in Dec 23.",
+    "Payrolls changed by 154k in Dec 23, while headline CPI ran 3.4%.",
+    "Real GDP growth last printed at 0.5% and fed funds averaged 3.6%.",
+    "The 10Y-2Y spread was 0.5 pp and BIS private credit was 140.4% of GDP."
+  ],
+  "featuredIds": [
+    "unemployment-rate",
+    "headline-core-cpi",
+    "real-gdp-growth",
+    "fed-funds-rate",
+    "yield-curve-spread",
+    "bis-private-credit-gdp"
+  ],
+  "sections": [
+    {
+      "id": "labor-inflation",
+      "kicker": "Labor and inflation",
+      "title": "Monthly pulse",
+      "description": "High-frequency labor and inflation series come directly from BLS so the dashboard can highlight current-cycle momentum without scraping webpages.",
+      "indicatorIds": [
+        "unemployment-rate",
+        "payroll-change",
+        "headline-core-cpi"
+      ]
+    },
+    {
+      "id": "growth-activity",
+      "kicker": "Growth and activity",
+      "title": "Real-economy cycle",
+      "description": "Growth, production, and housing are shown with chart types that match their release cadence and economic meaning.",
+      "indicatorIds": [
+        "real-gdp-growth",
+        "industrial-production",
+        "housing-starts"
+      ]
+    },
+    {
+      "id": "rates-financial",
+      "kicker": "Rates and financial conditions",
+      "title": "Policy and curve",
+      "description": "Rates are shown as lines because the level and the persistence of the regime matter more than single-point changes.",
+      "indicatorIds": [
+        "fed-funds-rate",
+        "yield-curve-spread"
+      ]
+    },
+    {
+      "id": "balance-context",
+      "kicker": "Leverage and context",
+      "title": "Balance-sheet backdrop",
+      "description": "BIS leverage series and World Bank annual context help separate short-cycle moves from slower structural pressure.",
+      "indicatorIds": [
+        "bis-debt-service-ratio",
+        "bis-private-credit-gdp",
+        "worldbank-gdp-growth",
+        "worldbank-public-debt"
+      ]
+    }
+  ],
+  "indicators": [
+    {
+      "id": "unemployment-rate",
+      "title": "Unemployment rate",
+      "section": "labor-inflation",
+      "source": "BLS",
+      "sourceUrl": "https://www.bls.gov/developers/",
+      "frequency": "monthly",
+      "visualization": "line",
+      "unit": "percent",
+      "latest": {
+        "label": "Dec 23",
+        "date": "2023-12-01",
+        "value": 3.8,
+        "formatted": "3.8%"
+      },
+      "description": "Headline unemployment was 3.8% in Dec 23.",
+      "rationale": "A line chart is best for the unemployment rate because turning points and persistence matter more than one-off monthly moves.",
+      "showZeroLine": false,
+      "series": [
+        {
+          "date": "2018-01-01",
+          "label": "Jan 18",
+          "value": 4
+        },
+        {
+          "date": "2018-02-01",
+          "label": "Feb 18",
+          "value": 4.1
+        },
+        {
+          "date": "2018-03-01",
+          "label": "Mar 18",
+          "value": 4
+        },
+        {
+          "date": "2018-04-01",
+          "label": "Apr 18",
+          "value": 4
+        },
+        {
+          "date": "2018-05-01",
+          "label": "May 18",
+          "value": 3.8
+        },
+        {
+          "date": "2018-06-01",
+          "label": "Jun 18",
+          "value": 4
+        },
+        {
+          "date": "2018-07-01",
+          "label": "Jul 18",
+          "value": 3.8
+        },
+        {
+          "date": "2018-08-01",
+          "label": "Aug 18",
+          "value": 3.8
+        },
+        {
+          "date": "2018-09-01",
+          "label": "Sep 18",
+          "value": 3.7
+        },
+        {
+          "date": "2018-10-01",
+          "label": "Oct 18",
+          "value": 3.8
+        },
+        {
+          "date": "2018-11-01",
+          "label": "Nov 18",
+          "value": 3.8
+        },
+        {
+          "date": "2018-12-01",
+          "label": "Dec 18",
+          "value": 3.9
+        },
+        {
+          "date": "2019-01-01",
+          "label": "Jan 19",
+          "value": 4
+        },
+        {
+          "date": "2019-02-01",
+          "label": "Feb 19",
+          "value": 3.8
+        },
+        {
+          "date": "2019-03-01",
+          "label": "Mar 19",
+          "value": 3.8
+        },
+        {
+          "date": "2019-04-01",
+          "label": "Apr 19",
+          "value": 3.7
+        },
+        {
+          "date": "2019-05-01",
+          "label": "May 19",
+          "value": 3.6
+        },
+        {
+          "date": "2019-06-01",
+          "label": "Jun 19",
+          "value": 3.6
+        },
+        {
+          "date": "2019-07-01",
+          "label": "Jul 19",
+          "value": 3.7
+        },
+        {
+          "date": "2019-08-01",
+          "label": "Aug 19",
+          "value": 3.6
+        },
+        {
+          "date": "2019-09-01",
+          "label": "Sep 19",
+          "value": 3.5
+        },
+        {
+          "date": "2019-10-01",
+          "label": "Oct 19",
+          "value": 3.6
+        },
+        {
+          "date": "2019-11-01",
+          "label": "Nov 19",
+          "value": 3.6
+        },
+        {
+          "date": "2019-12-01",
+          "label": "Dec 19",
+          "value": 3.6
+        },
+        {
+          "date": "2020-01-01",
+          "label": "Jan 20",
+          "value": 3.6
+        },
+        {
+          "date": "2020-02-01",
+          "label": "Feb 20",
+          "value": 3.5
+        },
+        {
+          "date": "2020-03-01",
+          "label": "Mar 20",
+          "value": 4.4
+        },
+        {
+          "date": "2020-04-01",
+          "label": "Apr 20",
+          "value": 14.8
+        },
+        {
+          "date": "2020-05-01",
+          "label": "May 20",
+          "value": 13.2
+        },
+        {
+          "date": "2020-06-01",
+          "label": "Jun 20",
+          "value": 11
+        },
+        {
+          "date": "2020-07-01",
+          "label": "Jul 20",
+          "value": 10.2
+        },
+        {
+          "date": "2020-08-01",
+          "label": "Aug 20",
+          "value": 8.4
+        },
+        {
+          "date": "2020-09-01",
+          "label": "Sep 20",
+          "value": 7.8
+        },
+        {
+          "date": "2020-10-01",
+          "label": "Oct 20",
+          "value": 6.9
+        },
+        {
+          "date": "2020-11-01",
+          "label": "Nov 20",
+          "value": 6.7
+        },
+        {
+          "date": "2020-12-01",
+          "label": "Dec 20",
+          "value": 6.7
+        },
+        {
+          "date": "2021-01-01",
+          "label": "Jan 21",
+          "value": 6.4
+        },
+        {
+          "date": "2021-02-01",
+          "label": "Feb 21",
+          "value": 6.2
+        },
+        {
+          "date": "2021-03-01",
+          "label": "Mar 21",
+          "value": 6.1
+        },
+        {
+          "date": "2021-04-01",
+          "label": "Apr 21",
+          "value": 6.1
+        },
+        {
+          "date": "2021-05-01",
+          "label": "May 21",
+          "value": 5.8
+        },
+        {
+          "date": "2021-06-01",
+          "label": "Jun 21",
+          "value": 5.9
+        },
+        {
+          "date": "2021-07-01",
+          "label": "Jul 21",
+          "value": 5.4
+        },
+        {
+          "date": "2021-08-01",
+          "label": "Aug 21",
+          "value": 5.1
+        },
+        {
+          "date": "2021-09-01",
+          "label": "Sep 21",
+          "value": 4.7
+        },
+        {
+          "date": "2021-10-01",
+          "label": "Oct 21",
+          "value": 4.5
+        },
+        {
+          "date": "2021-11-01",
+          "label": "Nov 21",
+          "value": 4.1
+        },
+        {
+          "date": "2021-12-01",
+          "label": "Dec 21",
+          "value": 3.9
+        },
+        {
+          "date": "2022-01-01",
+          "label": "Jan 22",
+          "value": 4
+        },
+        {
+          "date": "2022-02-01",
+          "label": "Feb 22",
+          "value": 3.9
+        },
+        {
+          "date": "2022-03-01",
+          "label": "Mar 22",
+          "value": 3.7
+        },
+        {
+          "date": "2022-04-01",
+          "label": "Apr 22",
+          "value": 3.7
+        },
+        {
+          "date": "2022-05-01",
+          "label": "May 22",
+          "value": 3.6
+        },
+        {
+          "date": "2022-06-01",
+          "label": "Jun 22",
+          "value": 3.6
+        },
+        {
+          "date": "2022-07-01",
+          "label": "Jul 22",
+          "value": 3.5
+        },
+        {
+          "date": "2022-08-01",
+          "label": "Aug 22",
+          "value": 3.6
+        },
+        {
+          "date": "2022-09-01",
+          "label": "Sep 22",
+          "value": 3.5
+        },
+        {
+          "date": "2022-10-01",
+          "label": "Oct 22",
+          "value": 3.6
+        },
+        {
+          "date": "2022-11-01",
+          "label": "Nov 22",
+          "value": 3.6
+        },
+        {
+          "date": "2022-12-01",
+          "label": "Dec 22",
+          "value": 3.5
+        },
+        {
+          "date": "2023-01-01",
+          "label": "Jan 23",
+          "value": 3.5
+        },
+        {
+          "date": "2023-02-01",
+          "label": "Feb 23",
+          "value": 3.6
+        },
+        {
+          "date": "2023-03-01",
+          "label": "Mar 23",
+          "value": 3.5
+        },
+        {
+          "date": "2023-04-01",
+          "label": "Apr 23",
+          "value": 3.4
+        },
+        {
+          "date": "2023-05-01",
+          "label": "May 23",
+          "value": 3.6
+        },
+        {
+          "date": "2023-06-01",
+          "label": "Jun 23",
+          "value": 3.6
+        },
+        {
+          "date": "2023-07-01",
+          "label": "Jul 23",
+          "value": 3.5
+        },
+        {
+          "date": "2023-08-01",
+          "label": "Aug 23",
+          "value": 3.7
+        },
+        {
+          "date": "2023-09-01",
+          "label": "Sep 23",
+          "value": 3.7
+        },
+        {
+          "date": "2023-10-01",
+          "label": "Oct 23",
+          "value": 3.9
+        },
+        {
+          "date": "2023-11-01",
+          "label": "Nov 23",
+          "value": 3.7
+        },
+        {
+          "date": "2023-12-01",
+          "label": "Dec 23",
+          "value": 3.8
+        }
+      ],
+      "previous": {
+        "label": "Nov 23",
+        "date": "2023-11-01",
+        "value": 3.7,
+        "formatted": "3.7%"
+      },
+      "delta": {
+        "label": "vs Nov 23",
+        "value": 0.09999999999999964,
+        "formatted": "+0.1 pp",
+        "direction": "up"
+      }
+    },
+    {
+      "id": "payroll-change",
+      "title": "Nonfarm payroll change",
+      "section": "labor-inflation",
+      "source": "BLS",
+      "sourceUrl": "https://www.bls.gov/developers/",
+      "frequency": "monthly",
+      "visualization": "bar",
+      "unit": "thousandsJobs",
+      "latest": {
+        "label": "Dec 23",
+        "date": "2023-12-01",
+        "value": 154,
+        "formatted": "154k"
+      },
+      "description": "Bars show month-over-month payroll additions or losses, with the latest print at 154k in Dec 23.",
+      "rationale": "Payroll changes are discrete monthly flows, so bars communicate acceleration and reversals better than a level line.",
+      "showZeroLine": true,
+      "series": [
+        {
+          "date": "2019-01-01",
+          "label": "Jan 19",
+          "value": 251
+        },
+        {
+          "date": "2019-02-01",
+          "label": "Feb 19",
+          "value": 7
+        },
+        {
+          "date": "2019-03-01",
+          "label": "Mar 19",
+          "value": 228
+        },
+        {
+          "date": "2019-04-01",
+          "label": "Apr 19",
+          "value": 296
+        },
+        {
+          "date": "2019-05-01",
+          "label": "May 19",
+          "value": 27
+        },
+        {
+          "date": "2019-06-01",
+          "label": "Jun 19",
+          "value": 220
+        },
+        {
+          "date": "2019-07-01",
+          "label": "Jul 19",
+          "value": 99
+        },
+        {
+          "date": "2019-08-01",
+          "label": "Aug 19",
+          "value": 232
+        },
+        {
+          "date": "2019-09-01",
+          "label": "Sep 19",
+          "value": 196
+        },
+        {
+          "date": "2019-10-01",
+          "label": "Oct 19",
+          "value": 95
+        },
+        {
+          "date": "2019-11-01",
+          "label": "Nov 19",
+          "value": 207
+        },
+        {
+          "date": "2019-12-01",
+          "label": "Dec 19",
+          "value": 127
+        },
+        {
+          "date": "2020-01-01",
+          "label": "Jan 20",
+          "value": 237
+        },
+        {
+          "date": "2020-02-01",
+          "label": "Feb 20",
+          "value": 262
+        },
+        {
+          "date": "2020-03-01",
+          "label": "Mar 20",
+          "value": -1398
+        },
+        {
+          "date": "2020-04-01",
+          "label": "Apr 20",
+          "value": -20469
+        },
+        {
+          "date": "2020-05-01",
+          "label": "May 20",
+          "value": 2614
+        },
+        {
+          "date": "2020-06-01",
+          "label": "Jun 20",
+          "value": 4631
+        },
+        {
+          "date": "2020-07-01",
+          "label": "Jul 20",
+          "value": 1584
+        },
+        {
+          "date": "2020-08-01",
+          "label": "Aug 20",
+          "value": 1566
+        },
+        {
+          "date": "2020-09-01",
+          "label": "Sep 20",
+          "value": 949
+        },
+        {
+          "date": "2020-10-01",
+          "label": "Oct 20",
+          "value": 690
+        },
+        {
+          "date": "2020-11-01",
+          "label": "Nov 20",
+          "value": 273
+        },
+        {
+          "date": "2020-12-01",
+          "label": "Dec 20",
+          "value": -185
+        },
+        {
+          "date": "2021-01-01",
+          "label": "Jan 21",
+          "value": 315
+        },
+        {
+          "date": "2021-02-01",
+          "label": "Feb 21",
+          "value": 517
+        },
+        {
+          "date": "2021-03-01",
+          "label": "Mar 21",
+          "value": 852
+        },
+        {
+          "date": "2021-04-01",
+          "label": "Apr 21",
+          "value": 355
+        },
+        {
+          "date": "2021-05-01",
+          "label": "May 21",
+          "value": 478
+        },
+        {
+          "date": "2021-06-01",
+          "label": "Jun 21",
+          "value": 755
+        },
+        {
+          "date": "2021-07-01",
+          "label": "Jul 21",
+          "value": 942
+        },
+        {
+          "date": "2021-08-01",
+          "label": "Aug 21",
+          "value": 552
+        },
+        {
+          "date": "2021-09-01",
+          "label": "Sep 21",
+          "value": 457
+        },
+        {
+          "date": "2021-10-01",
+          "label": "Oct 21",
+          "value": 801
+        },
+        {
+          "date": "2021-11-01",
+          "label": "Nov 21",
+          "value": 658
+        },
+        {
+          "date": "2021-12-01",
+          "label": "Dec 21",
+          "value": 586
+        },
+        {
+          "date": "2022-01-01",
+          "label": "Jan 22",
+          "value": 190
+        },
+        {
+          "date": "2022-02-01",
+          "label": "Feb 22",
+          "value": 819
+        },
+        {
+          "date": "2022-03-01",
+          "label": "Mar 22",
+          "value": 490
+        },
+        {
+          "date": "2022-04-01",
+          "label": "Apr 22",
+          "value": 308
+        },
+        {
+          "date": "2022-05-01",
+          "label": "May 22",
+          "value": 301
+        },
+        {
+          "date": "2022-06-01",
+          "label": "Jun 22",
+          "value": 434
+        },
+        {
+          "date": "2022-07-01",
+          "label": "Jul 22",
+          "value": 714
+        },
+        {
+          "date": "2022-08-01",
+          "label": "Aug 22",
+          "value": 290
+        },
+        {
+          "date": "2022-09-01",
+          "label": "Sep 22",
+          "value": 220
+        },
+        {
+          "date": "2022-10-01",
+          "label": "Oct 22",
+          "value": 357
+        },
+        {
+          "date": "2022-11-01",
+          "label": "Nov 22",
+          "value": 303
+        },
+        {
+          "date": "2022-12-01",
+          "label": "Dec 22",
+          "value": 100
+        },
+        {
+          "date": "2023-01-01",
+          "label": "Jan 23",
+          "value": 434
+        },
+        {
+          "date": "2023-02-01",
+          "label": "Feb 23",
+          "value": 290
+        },
+        {
+          "date": "2023-03-01",
+          "label": "Mar 23",
+          "value": 68
+        },
+        {
+          "date": "2023-04-01",
+          "label": "Apr 23",
+          "value": 241
+        },
+        {
+          "date": "2023-05-01",
+          "label": "May 23",
+          "value": 280
+        },
+        {
+          "date": "2023-06-01",
+          "label": "Jun 23",
+          "value": 225
+        },
+        {
+          "date": "2023-07-01",
+          "label": "Jul 23",
+          "value": 163
+        },
+        {
+          "date": "2023-08-01",
+          "label": "Aug 23",
+          "value": 218
+        },
+        {
+          "date": "2023-09-01",
+          "label": "Sep 23",
+          "value": 156
+        },
+        {
+          "date": "2023-10-01",
+          "label": "Oct 23",
+          "value": 159
+        },
+        {
+          "date": "2023-11-01",
+          "label": "Nov 23",
+          "value": 127
+        },
+        {
+          "date": "2023-12-01",
+          "label": "Dec 23",
+          "value": 154
+        }
+      ],
+      "previous": {
+        "label": "Nov 23",
+        "date": "2023-11-01",
+        "value": 127,
+        "formatted": "127k"
+      },
+      "delta": {
+        "label": "vs Nov 23",
+        "value": 27,
+        "formatted": "+27k",
+        "direction": "up"
+      }
+    },
+    {
+      "id": "headline-core-cpi",
+      "title": "Headline vs. core CPI",
+      "section": "labor-inflation",
+      "source": "BLS",
+      "sourceUrl": "https://www.bls.gov/developers/",
+      "frequency": "monthly",
+      "visualization": "compare",
+      "unit": "percent",
+      "latest": {
+        "label": "Dec 23",
+        "date": "2023-12-01",
+        "value": 3.3521228314302216,
+        "formatted": "3.4%"
+      },
+      "description": "Headline CPI ran 3.4% year over year in Dec 23; the dashed line tracks core CPI at 3.9%.",
+      "rationale": "Two lines are the clearest way to compare whether broad inflation and underlying inflation are diverging or converging.",
+      "secondaryLabel": "Core CPI",
+      "showZeroLine": false,
+      "series": [
+        {
+          "date": "2018-01-01",
+          "label": "Jan 18",
+          "value": 2.0705076202751584,
+          "secondaryValue": 1.821395296761478
+        },
+        {
+          "date": "2018-02-01",
+          "label": "Feb 18",
+          "value": 2.211795421238657,
+          "secondaryValue": 1.847552987740047
+        },
+        {
+          "date": "2018-03-01",
+          "label": "Mar 18",
+          "value": 2.3597114039729186,
+          "secondaryValue": 2.117075888415783
+        },
+        {
+          "date": "2018-04-01",
+          "label": "Apr 18",
+          "value": 2.462743943334802,
+          "secondaryValue": 2.1391500623902138
+        },
+        {
+          "date": "2018-05-01",
+          "label": "May 18",
+          "value": 2.8010117148075615,
+          "secondaryValue": 2.2371791053666037
+        },
+        {
+          "date": "2018-06-01",
+          "label": "Jun 18",
+          "value": 2.8715478353166874,
+          "secondaryValue": 2.255033450522587
+        },
+        {
+          "date": "2018-07-01",
+          "label": "Jul 18",
+          "value": 2.949515086647112,
+          "secondaryValue": 2.354169312841361
+        },
+        {
+          "date": "2018-08-01",
+          "label": "Aug 18",
+          "value": 2.699180104187448,
+          "secondaryValue": 2.199160263011959
+        },
+        {
+          "date": "2018-09-01",
+          "label": "Sep 18",
+          "value": 2.27697219419899,
+          "secondaryValue": 2.169675932332034
+        },
+        {
+          "date": "2018-10-01",
+          "label": "Oct 18",
+          "value": 2.5224699286070384,
+          "secondaryValue": 2.138875089694755
+        },
+        {
+          "date": "2018-11-01",
+          "label": "Nov 18",
+          "value": 2.1766010321523983,
+          "secondaryValue": 2.214271061808668
+        },
+        {
+          "date": "2018-12-01",
+          "label": "Dec 18",
+          "value": 1.9101588486313719,
+          "secondaryValue": 2.1789886337642805
+        },
+        {
+          "date": "2019-01-01",
+          "label": "Jan 19",
+          "value": 1.5512351381991145,
+          "secondaryValue": 2.1536455674329864
+        },
+        {
+          "date": "2019-02-01",
+          "label": "Feb 19",
+          "value": 1.5201352659333054,
+          "secondaryValue": 2.084188550450964
+        },
+        {
+          "date": "2019-03-01",
+          "label": "Mar 19",
+          "value": 1.8625227405691738,
+          "secondaryValue": 2.036553524804177
+        },
+        {
+          "date": "2019-04-01",
+          "label": "Apr 19",
+          "value": 1.9964397755302459,
+          "secondaryValue": 2.064779690691574
+        },
+        {
+          "date": "2019-05-01",
+          "label": "May 19",
+          "value": 1.7902284687663923,
+          "secondaryValue": 1.9889773137736897
+        },
+        {
+          "date": "2019-06-01",
+          "label": "Jun 19",
+          "value": 1.6484846560762445,
+          "secondaryValue": 2.126528442317923
+        },
+        {
+          "date": "2019-07-01",
+          "label": "Jul 19",
+          "value": 1.811464806393509,
+          "secondaryValue": 2.210054020095613
+        },
+        {
+          "date": "2019-08-01",
+          "label": "Aug 19",
+          "value": 1.7497798894291428,
+          "secondaryValue": 2.386323116754253
+        },
+        {
+          "date": "2019-09-01",
+          "label": "Sep 19",
+          "value": 1.7113045131695266,
+          "secondaryValue": 2.3577075328233357
+        },
+        {
+          "date": "2019-10-01",
+          "label": "Oct 19",
+          "value": 1.7640429444213825,
+          "secondaryValue": 2.314494929804734
+        },
+        {
+          "date": "2019-11-01",
+          "label": "Nov 19",
+          "value": 2.0512779818916256,
+          "secondaryValue": 2.3168213658555357
+        },
+        {
+          "date": "2019-12-01",
+          "label": "Dec 19",
+          "value": 2.285129740121714,
+          "secondaryValue": 2.2587356175434032
+        },
+        {
+          "date": "2020-01-01",
+          "label": "Jan 20",
+          "value": 2.486571955250451,
+          "secondaryValue": 2.2612466458046625
+        },
+        {
+          "date": "2020-02-01",
+          "label": "Feb 20",
+          "value": 2.3348735639459393,
+          "secondaryValue": 2.3568249883192767
+        },
+        {
+          "date": "2020-03-01",
+          "label": "Mar 20",
+          "value": 1.539326991919816,
+          "secondaryValue": 2.0913854473792752
+        },
+        {
+          "date": "2020-04-01",
+          "label": "Apr 20",
+          "value": 0.3290966863368166,
+          "secondaryValue": 1.432154674229604
+        },
+        {
+          "date": "2020-05-01",
+          "label": "May 20",
+          "value": 0.1179263702107137,
+          "secondaryValue": 1.2220571994363851
+        },
+        {
+          "date": "2020-06-01",
+          "label": "Jun 20",
+          "value": 0.6457330475554879,
+          "secondaryValue": 1.1874137937585731
+        },
+        {
+          "date": "2020-07-01",
+          "label": "Jul 20",
+          "value": 0.9860818253037064,
+          "secondaryValue": 1.5696258242717198
+        },
+        {
+          "date": "2020-08-01",
+          "label": "Aug 20",
+          "value": 1.3096453823307064,
+          "secondaryValue": 1.7363884483039227
+        },
+        {
+          "date": "2020-09-01",
+          "label": "Sep 20",
+          "value": 1.3713248610564606,
+          "secondaryValue": 1.7132790467333463
+        },
+        {
+          "date": "2020-10-01",
+          "label": "Oct 20",
+          "value": 1.1820661677274849,
+          "secondaryValue": 1.6105848131925151
+        },
+        {
+          "date": "2020-11-01",
+          "label": "Nov 20",
+          "value": 1.1745357842679691,
+          "secondaryValue": 1.6464987854006703
+        },
+        {
+          "date": "2020-12-01",
+          "label": "Dec 20",
+          "value": 1.36200549471931,
+          "secondaryValue": 1.619642553833958
+        },
+        {
+          "date": "2021-01-01",
+          "label": "Jan 21",
+          "value": 1.3997697415600938,
+          "secondaryValue": 1.4101291709899009
+        },
+        {
+          "date": "2021-02-01",
+          "label": "Feb 21",
+          "value": 1.6762152173745013,
+          "secondaryValue": 1.2826077195923398
+        },
+        {
+          "date": "2021-03-01",
+          "label": "Mar 21",
+          "value": 2.619762508959185,
+          "secondaryValue": 1.6463907344227007
+        },
+        {
+          "date": "2021-04-01",
+          "label": "Apr 21",
+          "value": 4.159694838702114,
+          "secondaryValue": 2.9610393514951836
+        },
+        {
+          "date": "2021-05-01",
+          "label": "May 21",
+          "value": 4.992706537594479,
+          "secondaryValue": 3.7976064620258145
+        },
+        {
+          "date": "2021-06-01",
+          "label": "Jun 21",
+          "value": 5.391451413321334,
+          "secondaryValue": 4.474619041539304
+        },
+        {
+          "date": "2021-07-01",
+          "label": "Jul 21",
+          "value": 5.365475239385408,
+          "secondaryValue": 4.2745131731807415
+        },
+        {
+          "date": "2021-08-01",
+          "label": "Aug 21",
+          "value": 5.251271554874999,
+          "secondaryValue": 4.000282784384361
+        },
+        {
+          "date": "2021-09-01",
+          "label": "Sep 21",
+          "value": 5.390348855079157,
+          "secondaryValue": 4.025214269254515
+        },
+        {
+          "date": "2021-10-01",
+          "label": "Oct 21",
+          "value": 6.221868903328887,
+          "secondaryValue": 4.562837877977798
+        },
+        {
+          "date": "2021-11-01",
+          "label": "Nov 21",
+          "value": 6.8090028398064755,
+          "secondaryValue": 4.928508607541389
+        },
+        {
+          "date": "2021-12-01",
+          "label": "Dec 21",
+          "value": 7.036402865545134,
+          "secondaryValue": 5.453410888992897
+        },
+        {
+          "date": "2022-01-01",
+          "label": "Jan 22",
+          "value": 7.4798724682891145,
+          "secondaryValue": 6.020648366109984
+        },
+        {
+          "date": "2022-02-01",
+          "label": "Feb 22",
+          "value": 7.871063897739283,
+          "secondaryValue": 6.4142063421698134
+        },
+        {
+          "date": "2022-03-01",
+          "label": "Mar 22",
+          "value": 8.54245555484244,
+          "secondaryValue": 6.47447858586081
+        },
+        {
+          "date": "2022-04-01",
+          "label": "Apr 22",
+          "value": 8.258629340882372,
+          "secondaryValue": 6.160573497634755
+        },
+        {
+          "date": "2022-05-01",
+          "label": "May 22",
+          "value": 8.581511543676516,
+          "secondaryValue": 6.0215373351262995
+        },
+        {
+          "date": "2022-06-01",
+          "label": "Jun 22",
+          "value": 9.05975796478415,
+          "secondaryValue": 5.916942829004589
+        },
+        {
+          "date": "2022-07-01",
+          "label": "Jul 22",
+          "value": 8.524814745625516,
+          "secondaryValue": 5.910885343153762
+        },
+        {
+          "date": "2022-08-01",
+          "label": "Aug 22",
+          "value": 8.262692503116233,
+          "secondaryValue": 6.322203021749005
+        },
+        {
+          "date": "2022-09-01",
+          "label": "Sep 22",
+          "value": 8.201669643833617,
+          "secondaryValue": 6.630604107415926
+        },
+        {
+          "date": "2022-10-01",
+          "label": "Oct 22",
+          "value": 7.7454273308049135,
+          "secondaryValue": 6.284421750107408
+        },
+        {
+          "date": "2022-11-01",
+          "label": "Nov 22",
+          "value": 7.110322794191731,
+          "secondaryValue": 5.957829066962803
+        },
+        {
+          "date": "2022-12-01",
+          "label": "Dec 22",
+          "value": 6.454401331410824,
+          "secondaryValue": 5.707834932442898
+        },
+        {
+          "date": "2023-01-01",
+          "label": "Jan 23",
+          "value": 6.410146968856258,
+          "secondaryValue": 5.582595560777077
+        },
+        {
+          "date": "2023-02-01",
+          "label": "Feb 23",
+          "value": 6.035613077866587,
+          "secondaryValue": 5.53775441836568
+        },
+        {
+          "date": "2023-03-01",
+          "label": "Mar 23",
+          "value": 4.984974122099168,
+          "secondaryValue": 5.5896026684640745
+        },
+        {
+          "date": "2023-04-01",
+          "label": "Apr 23",
+          "value": 4.930320398188925,
+          "secondaryValue": 5.519415773295833
+        },
+        {
+          "date": "2023-05-01",
+          "label": "May 23",
+          "value": 4.04760927279197,
+          "secondaryValue": 5.329805200577094
+        },
+        {
+          "date": "2023-06-01",
+          "label": "Jun 23",
+          "value": 2.9691776545588935,
+          "secondaryValue": 4.828967015067198
+        },
+        {
+          "date": "2023-07-01",
+          "label": "Jul 23",
+          "value": 3.1777801779421764,
+          "secondaryValue": 4.652861868586069
+        },
+        {
+          "date": "2023-08-01",
+          "label": "Aug 23",
+          "value": 3.665112384399559,
+          "secondaryValue": 4.349245233496426
+        },
+        {
+          "date": "2023-09-01",
+          "label": "Sep 23",
+          "value": 3.6996981213444364,
+          "secondaryValue": 4.146534334979661
+        },
+        {
+          "date": "2023-10-01",
+          "label": "Oct 23",
+          "value": 3.2411446518932094,
+          "secondaryValue": 4.030870487613384
+        },
+        {
+          "date": "2023-11-01",
+          "label": "Nov 23",
+          "value": 3.1372707088417875,
+          "secondaryValue": 4.007343124165544
+        },
+        {
+          "date": "2023-12-01",
+          "label": "Dec 23",
+          "value": 3.3521228314302216,
+          "secondaryValue": 3.9298530886699288
+        }
+      ],
+      "previous": {
+        "label": "Nov 23",
+        "date": "2023-11-01",
+        "value": 3.1372707088417875,
+        "formatted": "3.1%"
+      },
+      "delta": {
+        "label": "vs Nov 23",
+        "value": 0.2148521225884341,
+        "formatted": "+0.2 pp",
+        "direction": "up"
+      }
+    },
+    {
+      "id": "real-gdp-growth",
+      "title": "Real GDP growth",
+      "section": "growth-activity",
+      "source": "FRED",
+      "sourceUrl": "https://fred.stlouisfed.org/series/A191RL1Q225SBEA",
+      "origin": "BEA",
+      "frequency": "quarterly",
+      "visualization": "bar",
+      "unit": "percent",
+      "latest": {
+        "label": "Q4 25",
+        "date": "2025-10-01",
+        "value": 0.5,
+        "formatted": "0.5%"
+      },
+      "description": "Quarterly real GDP growth last printed at 0.5% in Q4 25.",
+      "rationale": "Quarterly growth prints are discrete observations, so bars make quarter-to-quarter swings easier to compare.",
+      "showZeroLine": true,
+      "series": [
+        {
+          "date": "2019-01-01",
+          "label": "Q1 19",
+          "value": 2.5
+        },
+        {
+          "date": "2019-04-01",
+          "label": "Q2 19",
+          "value": 3.4
+        },
+        {
+          "date": "2019-07-01",
+          "label": "Q3 19",
+          "value": 4.8
+        },
+        {
+          "date": "2019-10-01",
+          "label": "Q4 19",
+          "value": 2.8
+        },
+        {
+          "date": "2020-01-01",
+          "label": "Q1 20",
+          "value": -5.2
+        },
+        {
+          "date": "2020-04-01",
+          "label": "Q2 20",
+          "value": -28
+        },
+        {
+          "date": "2020-07-01",
+          "label": "Q3 20",
+          "value": 34.9
+        },
+        {
+          "date": "2020-10-01",
+          "label": "Q4 20",
+          "value": 4.6
+        },
+        {
+          "date": "2021-01-01",
+          "label": "Q1 21",
+          "value": 5.7
+        },
+        {
+          "date": "2021-04-01",
+          "label": "Q2 21",
+          "value": 7
+        },
+        {
+          "date": "2021-07-01",
+          "label": "Q3 21",
+          "value": 3.3
+        },
+        {
+          "date": "2021-10-01",
+          "label": "Q4 21",
+          "value": 7
+        },
+        {
+          "date": "2022-01-01",
+          "label": "Q1 22",
+          "value": -1
+        },
+        {
+          "date": "2022-04-01",
+          "label": "Q2 22",
+          "value": 0.6
+        },
+        {
+          "date": "2022-07-01",
+          "label": "Q3 22",
+          "value": 2.9
+        },
+        {
+          "date": "2022-10-01",
+          "label": "Q4 22",
+          "value": 2.8
+        },
+        {
+          "date": "2023-01-01",
+          "label": "Q1 23",
+          "value": 2.9
+        },
+        {
+          "date": "2023-04-01",
+          "label": "Q2 23",
+          "value": 2.5
+        },
+        {
+          "date": "2023-07-01",
+          "label": "Q3 23",
+          "value": 4.7
+        },
+        {
+          "date": "2023-10-01",
+          "label": "Q4 23",
+          "value": 3.4
+        },
+        {
+          "date": "2024-01-01",
+          "label": "Q1 24",
+          "value": 0.8
+        },
+        {
+          "date": "2024-04-01",
+          "label": "Q2 24",
+          "value": 3.6
+        },
+        {
+          "date": "2024-07-01",
+          "label": "Q3 24",
+          "value": 3.3
+        },
+        {
+          "date": "2024-10-01",
+          "label": "Q4 24",
+          "value": 1.9
+        },
+        {
+          "date": "2025-01-01",
+          "label": "Q1 25",
+          "value": -0.6
+        },
+        {
+          "date": "2025-04-01",
+          "label": "Q2 25",
+          "value": 3.8
+        },
+        {
+          "date": "2025-07-01",
+          "label": "Q3 25",
+          "value": 4.4
+        },
+        {
+          "date": "2025-10-01",
+          "label": "Q4 25",
+          "value": 0.5
+        }
+      ],
+      "previous": {
+        "label": "Q3 25",
+        "date": "2025-07-01",
+        "value": 4.4,
+        "formatted": "4.4%"
+      },
+      "delta": {
+        "label": "vs Q3 25",
+        "value": -3.9000000000000004,
+        "formatted": "-3.9 pp",
+        "direction": "down"
+      }
+    },
+    {
+      "id": "industrial-production",
+      "title": "Industrial production",
+      "section": "growth-activity",
+      "source": "FRED",
+      "sourceUrl": "https://fred.stlouisfed.org/series/INDPRO",
+      "origin": "Board of Governors",
+      "frequency": "monthly",
+      "visualization": "line",
+      "unit": "index",
+      "latest": {
+        "label": "Feb 26",
+        "date": "2026-02-01",
+        "value": 102.551,
+        "formatted": "102.6"
+      },
+      "description": "Industrial production stood at 102.6 in Feb 26.",
+      "rationale": "The production index is a continuous level series, so a line best shows trend direction and cycle turning points.",
+      "showZeroLine": false,
+      "series": [
+        {
+          "date": "2020-03-01",
+          "label": "Mar 20",
+          "value": 97.4078
+        },
+        {
+          "date": "2020-04-01",
+          "label": "Apr 20",
+          "value": 84.5619
+        },
+        {
+          "date": "2020-05-01",
+          "label": "May 20",
+          "value": 85.9604
+        },
+        {
+          "date": "2020-06-01",
+          "label": "Jun 20",
+          "value": 91.5934
+        },
+        {
+          "date": "2020-07-01",
+          "label": "Jul 20",
+          "value": 95.0256
+        },
+        {
+          "date": "2020-08-01",
+          "label": "Aug 20",
+          "value": 95.9549
+        },
+        {
+          "date": "2020-09-01",
+          "label": "Sep 20",
+          "value": 95.9669
+        },
+        {
+          "date": "2020-10-01",
+          "label": "Oct 20",
+          "value": 96.7394
+        },
+        {
+          "date": "2020-11-01",
+          "label": "Nov 20",
+          "value": 97.0816
+        },
+        {
+          "date": "2020-12-01",
+          "label": "Dec 20",
+          "value": 98.363
+        },
+        {
+          "date": "2021-01-01",
+          "label": "Jan 21",
+          "value": 98.8822
+        },
+        {
+          "date": "2021-02-01",
+          "label": "Feb 21",
+          "value": 95.6149
+        },
+        {
+          "date": "2021-03-01",
+          "label": "Mar 21",
+          "value": 98.3856
+        },
+        {
+          "date": "2021-04-01",
+          "label": "Apr 21",
+          "value": 98.5587
+        },
+        {
+          "date": "2021-05-01",
+          "label": "May 21",
+          "value": 99.4333
+        },
+        {
+          "date": "2021-06-01",
+          "label": "Jun 21",
+          "value": 99.7987
+        },
+        {
+          "date": "2021-07-01",
+          "label": "Jul 21",
+          "value": 100.2519
+        },
+        {
+          "date": "2021-08-01",
+          "label": "Aug 21",
+          "value": 100.0437
+        },
+        {
+          "date": "2021-09-01",
+          "label": "Sep 21",
+          "value": 98.8579
+        },
+        {
+          "date": "2021-10-01",
+          "label": "Oct 21",
+          "value": 100.1861
+        },
+        {
+          "date": "2021-11-01",
+          "label": "Nov 21",
+          "value": 100.8654
+        },
+        {
+          "date": "2021-12-01",
+          "label": "Dec 21",
+          "value": 100.5726
+        },
+        {
+          "date": "2022-01-01",
+          "label": "Jan 22",
+          "value": 100.1856
+        },
+        {
+          "date": "2022-02-01",
+          "label": "Feb 22",
+          "value": 100.8064
+        },
+        {
+          "date": "2022-03-01",
+          "label": "Mar 22",
+          "value": 101.3907
+        },
+        {
+          "date": "2022-04-01",
+          "label": "Apr 22",
+          "value": 101.44
+        },
+        {
+          "date": "2022-05-01",
+          "label": "May 22",
+          "value": 101.3335
+        },
+        {
+          "date": "2022-06-01",
+          "label": "Jun 22",
+          "value": 101.018
+        },
+        {
+          "date": "2022-07-01",
+          "label": "Jul 22",
+          "value": 101.223
+        },
+        {
+          "date": "2022-08-01",
+          "label": "Aug 22",
+          "value": 101.0963
+        },
+        {
+          "date": "2022-09-01",
+          "label": "Sep 22",
+          "value": 101.2918
+        },
+        {
+          "date": "2022-10-01",
+          "label": "Oct 22",
+          "value": 101.2529
+        },
+        {
+          "date": "2022-11-01",
+          "label": "Nov 22",
+          "value": 100.9552
+        },
+        {
+          "date": "2022-12-01",
+          "label": "Dec 22",
+          "value": 99.7664
+        },
+        {
+          "date": "2023-01-01",
+          "label": "Jan 23",
+          "value": 100.505
+        },
+        {
+          "date": "2023-02-01",
+          "label": "Feb 23",
+          "value": 100.6416
+        },
+        {
+          "date": "2023-03-01",
+          "label": "Mar 23",
+          "value": 101.0205
+        },
+        {
+          "date": "2023-04-01",
+          "label": "Apr 23",
+          "value": 101.253
+        },
+        {
+          "date": "2023-05-01",
+          "label": "May 23",
+          "value": 100.9286
+        },
+        {
+          "date": "2023-06-01",
+          "label": "Jun 23",
+          "value": 100.1196
+        },
+        {
+          "date": "2023-07-01",
+          "label": "Jul 23",
+          "value": 100.9067
+        },
+        {
+          "date": "2023-08-01",
+          "label": "Aug 23",
+          "value": 100.8393
+        },
+        {
+          "date": "2023-09-01",
+          "label": "Sep 23",
+          "value": 101.0211
+        },
+        {
+          "date": "2023-10-01",
+          "label": "Oct 23",
+          "value": 100.4689
+        },
+        {
+          "date": "2023-11-01",
+          "label": "Nov 23",
+          "value": 100.8639
+        },
+        {
+          "date": "2023-12-01",
+          "label": "Dec 23",
+          "value": 100.6031
+        },
+        {
+          "date": "2024-01-01",
+          "label": "Jan 24",
+          "value": 99.2223
+        },
+        {
+          "date": "2024-02-01",
+          "label": "Feb 24",
+          "value": 100.285
+        },
+        {
+          "date": "2024-03-01",
+          "label": "Mar 24",
+          "value": 100.4575
+        },
+        {
+          "date": "2024-04-01",
+          "label": "Apr 24",
+          "value": 100.2434
+        },
+        {
+          "date": "2024-05-01",
+          "label": "May 24",
+          "value": 100.863
+        },
+        {
+          "date": "2024-06-01",
+          "label": "Jun 24",
+          "value": 100.894
+        },
+        {
+          "date": "2024-07-01",
+          "label": "Jul 24",
+          "value": 99.9757
+        },
+        {
+          "date": "2024-08-01",
+          "label": "Aug 24",
+          "value": 100.4309
+        },
+        {
+          "date": "2024-09-01",
+          "label": "Sep 24",
+          "value": 99.8084
+        },
+        {
+          "date": "2024-10-01",
+          "label": "Oct 24",
+          "value": 99.4695
+        },
+        {
+          "date": "2024-11-01",
+          "label": "Nov 24",
+          "value": 99.2925
+        },
+        {
+          "date": "2024-12-01",
+          "label": "Dec 24",
+          "value": 100.3273
+        },
+        {
+          "date": "2025-01-01",
+          "label": "Jan 25",
+          "value": 100.0647
+        },
+        {
+          "date": "2025-02-01",
+          "label": "Feb 25",
+          "value": 101.0993
+        },
+        {
+          "date": "2025-03-01",
+          "label": "Mar 25",
+          "value": 101.0404
+        },
+        {
+          "date": "2025-04-01",
+          "label": "Apr 25",
+          "value": 101.1279
+        },
+        {
+          "date": "2025-05-01",
+          "label": "May 25",
+          "value": 100.9655
+        },
+        {
+          "date": "2025-06-01",
+          "label": "Jun 25",
+          "value": 101.4785
+        },
+        {
+          "date": "2025-07-01",
+          "label": "Jul 25",
+          "value": 101.894
+        },
+        {
+          "date": "2025-08-01",
+          "label": "Aug 25",
+          "value": 101.6247
+        },
+        {
+          "date": "2025-09-01",
+          "label": "Sep 25",
+          "value": 101.668
+        },
+        {
+          "date": "2025-10-01",
+          "label": "Oct 25",
+          "value": 101.2075
+        },
+        {
+          "date": "2025-11-01",
+          "label": "Nov 25",
+          "value": 101.3605
+        },
+        {
+          "date": "2025-12-01",
+          "label": "Dec 25",
+          "value": 101.6781
+        },
+        {
+          "date": "2026-01-01",
+          "label": "Jan 26",
+          "value": 102.3963
+        },
+        {
+          "date": "2026-02-01",
+          "label": "Feb 26",
+          "value": 102.551
+        }
+      ],
+      "previous": {
+        "label": "Jan 26",
+        "date": "2026-01-01",
+        "value": 102.3963,
+        "formatted": "102.4"
+      },
+      "delta": {
+        "label": "vs Jan 26",
+        "value": 0.1547000000000054,
+        "formatted": "+0.2",
+        "direction": "up"
+      }
+    },
+    {
+      "id": "housing-starts",
+      "title": "Housing starts",
+      "section": "growth-activity",
+      "source": "FRED",
+      "sourceUrl": "https://fred.stlouisfed.org/series/HOUST",
+      "origin": "US Census Bureau",
+      "frequency": "monthly",
+      "visualization": "area",
+      "unit": "thousandsUnits",
+      "latest": {
+        "label": "Jan 26",
+        "date": "2026-01-01",
+        "value": 1487,
+        "formatted": "1.49M"
+      },
+      "description": "Housing starts were running at 1.49M annualized units in Jan 26.",
+      "rationale": "An area chart emphasizes the scale of the housing cycle while still making directional changes easy to read.",
+      "showZeroLine": false,
+      "series": [
+        {
+          "date": "2020-02-01",
+          "label": "Feb 20",
+          "value": 1549
+        },
+        {
+          "date": "2020-03-01",
+          "label": "Mar 20",
+          "value": 1266
+        },
+        {
+          "date": "2020-04-01",
+          "label": "Apr 20",
+          "value": 936
+        },
+        {
+          "date": "2020-05-01",
+          "label": "May 20",
+          "value": 1039
+        },
+        {
+          "date": "2020-06-01",
+          "label": "Jun 20",
+          "value": 1266
+        },
+        {
+          "date": "2020-07-01",
+          "label": "Jul 20",
+          "value": 1526
+        },
+        {
+          "date": "2020-08-01",
+          "label": "Aug 20",
+          "value": 1396
+        },
+        {
+          "date": "2020-09-01",
+          "label": "Sep 20",
+          "value": 1473
+        },
+        {
+          "date": "2020-10-01",
+          "label": "Oct 20",
+          "value": 1543
+        },
+        {
+          "date": "2020-11-01",
+          "label": "Nov 20",
+          "value": 1543
+        },
+        {
+          "date": "2020-12-01",
+          "label": "Dec 20",
+          "value": 1614
+        },
+        {
+          "date": "2021-01-01",
+          "label": "Jan 21",
+          "value": 1630
+        },
+        {
+          "date": "2021-02-01",
+          "label": "Feb 21",
+          "value": 1404
+        },
+        {
+          "date": "2021-03-01",
+          "label": "Mar 21",
+          "value": 1696
+        },
+        {
+          "date": "2021-04-01",
+          "label": "Apr 21",
+          "value": 1495
+        },
+        {
+          "date": "2021-05-01",
+          "label": "May 21",
+          "value": 1589
+        },
+        {
+          "date": "2021-06-01",
+          "label": "Jun 21",
+          "value": 1650
+        },
+        {
+          "date": "2021-07-01",
+          "label": "Jul 21",
+          "value": 1597
+        },
+        {
+          "date": "2021-08-01",
+          "label": "Aug 21",
+          "value": 1594
+        },
+        {
+          "date": "2021-09-01",
+          "label": "Sep 21",
+          "value": 1577
+        },
+        {
+          "date": "2021-10-01",
+          "label": "Oct 21",
+          "value": 1579
+        },
+        {
+          "date": "2021-11-01",
+          "label": "Nov 21",
+          "value": 1705
+        },
+        {
+          "date": "2021-12-01",
+          "label": "Dec 21",
+          "value": 1722
+        },
+        {
+          "date": "2022-01-01",
+          "label": "Jan 22",
+          "value": 1702
+        },
+        {
+          "date": "2022-02-01",
+          "label": "Feb 22",
+          "value": 1735
+        },
+        {
+          "date": "2022-03-01",
+          "label": "Mar 22",
+          "value": 1712
+        },
+        {
+          "date": "2022-04-01",
+          "label": "Apr 22",
+          "value": 1820
+        },
+        {
+          "date": "2022-05-01",
+          "label": "May 22",
+          "value": 1531
+        },
+        {
+          "date": "2022-06-01",
+          "label": "Jun 22",
+          "value": 1551
+        },
+        {
+          "date": "2022-07-01",
+          "label": "Jul 22",
+          "value": 1381
+        },
+        {
+          "date": "2022-08-01",
+          "label": "Aug 22",
+          "value": 1531
+        },
+        {
+          "date": "2022-09-01",
+          "label": "Sep 22",
+          "value": 1488
+        },
+        {
+          "date": "2022-10-01",
+          "label": "Oct 22",
+          "value": 1435
+        },
+        {
+          "date": "2022-11-01",
+          "label": "Nov 22",
+          "value": 1424
+        },
+        {
+          "date": "2022-12-01",
+          "label": "Dec 22",
+          "value": 1308
+        },
+        {
+          "date": "2023-01-01",
+          "label": "Jan 23",
+          "value": 1361
+        },
+        {
+          "date": "2023-02-01",
+          "label": "Feb 23",
+          "value": 1399
+        },
+        {
+          "date": "2023-03-01",
+          "label": "Mar 23",
+          "value": 1377
+        },
+        {
+          "date": "2023-04-01",
+          "label": "Apr 23",
+          "value": 1354
+        },
+        {
+          "date": "2023-05-01",
+          "label": "May 23",
+          "value": 1584
+        },
+        {
+          "date": "2023-06-01",
+          "label": "Jun 23",
+          "value": 1421
+        },
+        {
+          "date": "2023-07-01",
+          "label": "Jul 23",
+          "value": 1460
+        },
+        {
+          "date": "2023-08-01",
+          "label": "Aug 23",
+          "value": 1317
+        },
+        {
+          "date": "2023-09-01",
+          "label": "Sep 23",
+          "value": 1371
+        },
+        {
+          "date": "2023-10-01",
+          "label": "Oct 23",
+          "value": 1368
+        },
+        {
+          "date": "2023-11-01",
+          "label": "Nov 23",
+          "value": 1514
+        },
+        {
+          "date": "2023-12-01",
+          "label": "Dec 23",
+          "value": 1521
+        },
+        {
+          "date": "2024-01-01",
+          "label": "Jan 24",
+          "value": 1381
+        },
+        {
+          "date": "2024-02-01",
+          "label": "Feb 24",
+          "value": 1552
+        },
+        {
+          "date": "2024-03-01",
+          "label": "Mar 24",
+          "value": 1312
+        },
+        {
+          "date": "2024-04-01",
+          "label": "Apr 24",
+          "value": 1385
+        },
+        {
+          "date": "2024-05-01",
+          "label": "May 24",
+          "value": 1316
+        },
+        {
+          "date": "2024-06-01",
+          "label": "Jun 24",
+          "value": 1327
+        },
+        {
+          "date": "2024-07-01",
+          "label": "Jul 24",
+          "value": 1265
+        },
+        {
+          "date": "2024-08-01",
+          "label": "Aug 24",
+          "value": 1391
+        },
+        {
+          "date": "2024-09-01",
+          "label": "Sep 24",
+          "value": 1357
+        },
+        {
+          "date": "2024-10-01",
+          "label": "Oct 24",
+          "value": 1352
+        },
+        {
+          "date": "2024-11-01",
+          "label": "Nov 24",
+          "value": 1295
+        },
+        {
+          "date": "2024-12-01",
+          "label": "Dec 24",
+          "value": 1514
+        },
+        {
+          "date": "2025-01-01",
+          "label": "Jan 25",
+          "value": 1358
+        },
+        {
+          "date": "2025-02-01",
+          "label": "Feb 25",
+          "value": 1490
+        },
+        {
+          "date": "2025-03-01",
+          "label": "Mar 25",
+          "value": 1355
+        },
+        {
+          "date": "2025-04-01",
+          "label": "Apr 25",
+          "value": 1398
+        },
+        {
+          "date": "2025-05-01",
+          "label": "May 25",
+          "value": 1282
+        },
+        {
+          "date": "2025-06-01",
+          "label": "Jun 25",
+          "value": 1382
+        },
+        {
+          "date": "2025-07-01",
+          "label": "Jul 25",
+          "value": 1420
+        },
+        {
+          "date": "2025-08-01",
+          "label": "Aug 25",
+          "value": 1291
+        },
+        {
+          "date": "2025-09-01",
+          "label": "Sep 25",
+          "value": 1328
+        },
+        {
+          "date": "2025-10-01",
+          "label": "Oct 25",
+          "value": 1272
+        },
+        {
+          "date": "2025-11-01",
+          "label": "Nov 25",
+          "value": 1324
+        },
+        {
+          "date": "2025-12-01",
+          "label": "Dec 25",
+          "value": 1387
+        },
+        {
+          "date": "2026-01-01",
+          "label": "Jan 26",
+          "value": 1487
+        }
+      ],
+      "previous": {
+        "label": "Dec 25",
+        "date": "2025-12-01",
+        "value": 1387,
+        "formatted": "1.39M"
+      },
+      "delta": {
+        "label": "vs Dec 25",
+        "value": 100,
+        "formatted": "+100k",
+        "direction": "up"
+      }
+    },
+    {
+      "id": "fed-funds-rate",
+      "title": "Effective fed funds rate",
+      "section": "rates-financial",
+      "source": "FRED",
+      "sourceUrl": "https://fred.stlouisfed.org/series/FEDFUNDS",
+      "origin": "Board of Governors",
+      "frequency": "monthly",
+      "visualization": "line",
+      "unit": "percent",
+      "latest": {
+        "label": "Mar 26",
+        "date": "2026-03-01",
+        "value": 3.64,
+        "formatted": "3.6%"
+      },
+      "description": "The effective fed funds rate averaged 3.6% in Mar 26.",
+      "rationale": "Policy rate changes are best tracked as a line because persistence at a given level matters more than any single print.",
+      "showZeroLine": false,
+      "series": [
+        {
+          "date": "2020-04-01",
+          "label": "Apr 20",
+          "value": 0.05
+        },
+        {
+          "date": "2020-05-01",
+          "label": "May 20",
+          "value": 0.05
+        },
+        {
+          "date": "2020-06-01",
+          "label": "Jun 20",
+          "value": 0.08
+        },
+        {
+          "date": "2020-07-01",
+          "label": "Jul 20",
+          "value": 0.09
+        },
+        {
+          "date": "2020-08-01",
+          "label": "Aug 20",
+          "value": 0.1
+        },
+        {
+          "date": "2020-09-01",
+          "label": "Sep 20",
+          "value": 0.09
+        },
+        {
+          "date": "2020-10-01",
+          "label": "Oct 20",
+          "value": 0.09
+        },
+        {
+          "date": "2020-11-01",
+          "label": "Nov 20",
+          "value": 0.09
+        },
+        {
+          "date": "2020-12-01",
+          "label": "Dec 20",
+          "value": 0.09
+        },
+        {
+          "date": "2021-01-01",
+          "label": "Jan 21",
+          "value": 0.09
+        },
+        {
+          "date": "2021-02-01",
+          "label": "Feb 21",
+          "value": 0.08
+        },
+        {
+          "date": "2021-03-01",
+          "label": "Mar 21",
+          "value": 0.07
+        },
+        {
+          "date": "2021-04-01",
+          "label": "Apr 21",
+          "value": 0.07
+        },
+        {
+          "date": "2021-05-01",
+          "label": "May 21",
+          "value": 0.06
+        },
+        {
+          "date": "2021-06-01",
+          "label": "Jun 21",
+          "value": 0.08
+        },
+        {
+          "date": "2021-07-01",
+          "label": "Jul 21",
+          "value": 0.1
+        },
+        {
+          "date": "2021-08-01",
+          "label": "Aug 21",
+          "value": 0.09
+        },
+        {
+          "date": "2021-09-01",
+          "label": "Sep 21",
+          "value": 0.08
+        },
+        {
+          "date": "2021-10-01",
+          "label": "Oct 21",
+          "value": 0.08
+        },
+        {
+          "date": "2021-11-01",
+          "label": "Nov 21",
+          "value": 0.08
+        },
+        {
+          "date": "2021-12-01",
+          "label": "Dec 21",
+          "value": 0.08
+        },
+        {
+          "date": "2022-01-01",
+          "label": "Jan 22",
+          "value": 0.08
+        },
+        {
+          "date": "2022-02-01",
+          "label": "Feb 22",
+          "value": 0.08
+        },
+        {
+          "date": "2022-03-01",
+          "label": "Mar 22",
+          "value": 0.2
+        },
+        {
+          "date": "2022-04-01",
+          "label": "Apr 22",
+          "value": 0.33
+        },
+        {
+          "date": "2022-05-01",
+          "label": "May 22",
+          "value": 0.77
+        },
+        {
+          "date": "2022-06-01",
+          "label": "Jun 22",
+          "value": 1.21
+        },
+        {
+          "date": "2022-07-01",
+          "label": "Jul 22",
+          "value": 1.68
+        },
+        {
+          "date": "2022-08-01",
+          "label": "Aug 22",
+          "value": 2.33
+        },
+        {
+          "date": "2022-09-01",
+          "label": "Sep 22",
+          "value": 2.56
+        },
+        {
+          "date": "2022-10-01",
+          "label": "Oct 22",
+          "value": 3.08
+        },
+        {
+          "date": "2022-11-01",
+          "label": "Nov 22",
+          "value": 3.78
+        },
+        {
+          "date": "2022-12-01",
+          "label": "Dec 22",
+          "value": 4.1
+        },
+        {
+          "date": "2023-01-01",
+          "label": "Jan 23",
+          "value": 4.33
+        },
+        {
+          "date": "2023-02-01",
+          "label": "Feb 23",
+          "value": 4.57
+        },
+        {
+          "date": "2023-03-01",
+          "label": "Mar 23",
+          "value": 4.65
+        },
+        {
+          "date": "2023-04-01",
+          "label": "Apr 23",
+          "value": 4.83
+        },
+        {
+          "date": "2023-05-01",
+          "label": "May 23",
+          "value": 5.06
+        },
+        {
+          "date": "2023-06-01",
+          "label": "Jun 23",
+          "value": 5.08
+        },
+        {
+          "date": "2023-07-01",
+          "label": "Jul 23",
+          "value": 5.12
+        },
+        {
+          "date": "2023-08-01",
+          "label": "Aug 23",
+          "value": 5.33
+        },
+        {
+          "date": "2023-09-01",
+          "label": "Sep 23",
+          "value": 5.33
+        },
+        {
+          "date": "2023-10-01",
+          "label": "Oct 23",
+          "value": 5.33
+        },
+        {
+          "date": "2023-11-01",
+          "label": "Nov 23",
+          "value": 5.33
+        },
+        {
+          "date": "2023-12-01",
+          "label": "Dec 23",
+          "value": 5.33
+        },
+        {
+          "date": "2024-01-01",
+          "label": "Jan 24",
+          "value": 5.33
+        },
+        {
+          "date": "2024-02-01",
+          "label": "Feb 24",
+          "value": 5.33
+        },
+        {
+          "date": "2024-03-01",
+          "label": "Mar 24",
+          "value": 5.33
+        },
+        {
+          "date": "2024-04-01",
+          "label": "Apr 24",
+          "value": 5.33
+        },
+        {
+          "date": "2024-05-01",
+          "label": "May 24",
+          "value": 5.33
+        },
+        {
+          "date": "2024-06-01",
+          "label": "Jun 24",
+          "value": 5.33
+        },
+        {
+          "date": "2024-07-01",
+          "label": "Jul 24",
+          "value": 5.33
+        },
+        {
+          "date": "2024-08-01",
+          "label": "Aug 24",
+          "value": 5.33
+        },
+        {
+          "date": "2024-09-01",
+          "label": "Sep 24",
+          "value": 5.13
+        },
+        {
+          "date": "2024-10-01",
+          "label": "Oct 24",
+          "value": 4.83
+        },
+        {
+          "date": "2024-11-01",
+          "label": "Nov 24",
+          "value": 4.64
+        },
+        {
+          "date": "2024-12-01",
+          "label": "Dec 24",
+          "value": 4.48
+        },
+        {
+          "date": "2025-01-01",
+          "label": "Jan 25",
+          "value": 4.33
+        },
+        {
+          "date": "2025-02-01",
+          "label": "Feb 25",
+          "value": 4.33
+        },
+        {
+          "date": "2025-03-01",
+          "label": "Mar 25",
+          "value": 4.33
+        },
+        {
+          "date": "2025-04-01",
+          "label": "Apr 25",
+          "value": 4.33
+        },
+        {
+          "date": "2025-05-01",
+          "label": "May 25",
+          "value": 4.33
+        },
+        {
+          "date": "2025-06-01",
+          "label": "Jun 25",
+          "value": 4.33
+        },
+        {
+          "date": "2025-07-01",
+          "label": "Jul 25",
+          "value": 4.33
+        },
+        {
+          "date": "2025-08-01",
+          "label": "Aug 25",
+          "value": 4.33
+        },
+        {
+          "date": "2025-09-01",
+          "label": "Sep 25",
+          "value": 4.22
+        },
+        {
+          "date": "2025-10-01",
+          "label": "Oct 25",
+          "value": 4.09
+        },
+        {
+          "date": "2025-11-01",
+          "label": "Nov 25",
+          "value": 3.88
+        },
+        {
+          "date": "2025-12-01",
+          "label": "Dec 25",
+          "value": 3.72
+        },
+        {
+          "date": "2026-01-01",
+          "label": "Jan 26",
+          "value": 3.64
+        },
+        {
+          "date": "2026-02-01",
+          "label": "Feb 26",
+          "value": 3.64
+        },
+        {
+          "date": "2026-03-01",
+          "label": "Mar 26",
+          "value": 3.64
+        }
+      ],
+      "previous": {
+        "label": "Feb 26",
+        "date": "2026-02-01",
+        "value": 3.64,
+        "formatted": "3.6%"
+      },
+      "delta": {
+        "label": "vs Feb 26",
+        "value": 0,
+        "formatted": "0.0 pp",
+        "direction": "flat"
+      }
+    },
+    {
+      "id": "yield-curve-spread",
+      "title": "10Y minus 2Y Treasury spread",
+      "section": "rates-financial",
+      "source": "FRED",
+      "sourceUrl": "https://fred.stlouisfed.org/series/T10Y2Y",
+      "origin": "US Treasury / Board of Governors",
+      "frequency": "daily",
+      "visualization": "line",
+      "unit": "percentagePoints",
+      "latest": {
+        "label": "Apr 10",
+        "date": "2026-04-10",
+        "value": 0.5,
+        "formatted": "0.5 pp"
+      },
+      "description": "The latest 10Y-2Y spread was 0.5 pp on Apr 10.",
+      "rationale": "A line with a zero reference is the clearest way to spot inversions and re-steepening in the yield curve.",
+      "showZeroLine": true,
+      "series": [
+        {
+          "date": "2024-10-23",
+          "label": "Oct 23",
+          "value": 0.17
+        },
+        {
+          "date": "2024-10-24",
+          "label": "Oct 24",
+          "value": 0.14
+        },
+        {
+          "date": "2024-10-25",
+          "label": "Oct 25",
+          "value": 0.14
+        },
+        {
+          "date": "2024-10-28",
+          "label": "Oct 28",
+          "value": 0.16
+        },
+        {
+          "date": "2024-10-29",
+          "label": "Oct 29",
+          "value": 0.17
+        },
+        {
+          "date": "2024-10-30",
+          "label": "Oct 30",
+          "value": 0.14
+        },
+        {
+          "date": "2024-10-31",
+          "label": "Oct 31",
+          "value": 0.12
+        },
+        {
+          "date": "2024-11-01",
+          "label": "Nov 1",
+          "value": 0.16
+        },
+        {
+          "date": "2024-11-04",
+          "label": "Nov 4",
+          "value": 0.14
+        },
+        {
+          "date": "2024-11-05",
+          "label": "Nov 5",
+          "value": 0.07
+        },
+        {
+          "date": "2024-11-06",
+          "label": "Nov 6",
+          "value": 0.15
+        },
+        {
+          "date": "2024-11-07",
+          "label": "Nov 7",
+          "value": 0.1
+        },
+        {
+          "date": "2024-11-08",
+          "label": "Nov 8",
+          "value": 0.04
+        },
+        {
+          "date": "2024-11-12",
+          "label": "Nov 12",
+          "value": 0.09
+        },
+        {
+          "date": "2024-11-13",
+          "label": "Nov 13",
+          "value": 0.17
+        },
+        {
+          "date": "2024-11-14",
+          "label": "Nov 14",
+          "value": 0.09
+        },
+        {
+          "date": "2024-11-15",
+          "label": "Nov 15",
+          "value": 0.12
+        },
+        {
+          "date": "2024-11-18",
+          "label": "Nov 18",
+          "value": 0.13
+        },
+        {
+          "date": "2024-11-19",
+          "label": "Nov 19",
+          "value": 0.12
+        },
+        {
+          "date": "2024-11-20",
+          "label": "Nov 20",
+          "value": 0.1
+        },
+        {
+          "date": "2024-11-21",
+          "label": "Nov 21",
+          "value": 0.09
+        },
+        {
+          "date": "2024-11-22",
+          "label": "Nov 22",
+          "value": 0.04
+        },
+        {
+          "date": "2024-11-25",
+          "label": "Nov 25",
+          "value": 0.06
+        },
+        {
+          "date": "2024-11-26",
+          "label": "Nov 26",
+          "value": 0.09
+        },
+        {
+          "date": "2024-11-27",
+          "label": "Nov 27",
+          "value": 0.06
+        },
+        {
+          "date": "2024-11-29",
+          "label": "Nov 29",
+          "value": 0.05
+        },
+        {
+          "date": "2024-12-02",
+          "label": "Dec 2",
+          "value": 0.02
+        },
+        {
+          "date": "2024-12-03",
+          "label": "Dec 3",
+          "value": 0.06
+        },
+        {
+          "date": "2024-12-04",
+          "label": "Dec 4",
+          "value": 0.06
+        },
+        {
+          "date": "2024-12-05",
+          "label": "Dec 5",
+          "value": 0.02
+        },
+        {
+          "date": "2024-12-06",
+          "label": "Dec 6",
+          "value": 0.05
+        },
+        {
+          "date": "2024-12-09",
+          "label": "Dec 9",
+          "value": 0.07
+        },
+        {
+          "date": "2024-12-10",
+          "label": "Dec 10",
+          "value": 0.07
+        },
+        {
+          "date": "2024-12-11",
+          "label": "Dec 11",
+          "value": 0.11
+        },
+        {
+          "date": "2024-12-12",
+          "label": "Dec 12",
+          "value": 0.14
+        },
+        {
+          "date": "2024-12-13",
+          "label": "Dec 13",
+          "value": 0.15
+        },
+        {
+          "date": "2024-12-16",
+          "label": "Dec 16",
+          "value": 0.14
+        },
+        {
+          "date": "2024-12-17",
+          "label": "Dec 17",
+          "value": 0.15
+        },
+        {
+          "date": "2024-12-18",
+          "label": "Dec 18",
+          "value": 0.15
+        },
+        {
+          "date": "2024-12-19",
+          "label": "Dec 19",
+          "value": 0.25
+        },
+        {
+          "date": "2024-12-20",
+          "label": "Dec 20",
+          "value": 0.22
+        },
+        {
+          "date": "2024-12-23",
+          "label": "Dec 23",
+          "value": 0.29
+        },
+        {
+          "date": "2024-12-24",
+          "label": "Dec 24",
+          "value": 0.3
+        },
+        {
+          "date": "2024-12-26",
+          "label": "Dec 26",
+          "value": 0.28
+        },
+        {
+          "date": "2024-12-27",
+          "label": "Dec 27",
+          "value": 0.31
+        },
+        {
+          "date": "2024-12-30",
+          "label": "Dec 30",
+          "value": 0.31
+        },
+        {
+          "date": "2024-12-31",
+          "label": "Dec 31",
+          "value": 0.33
+        },
+        {
+          "date": "2025-01-02",
+          "label": "Jan 2",
+          "value": 0.32
+        },
+        {
+          "date": "2025-01-03",
+          "label": "Jan 3",
+          "value": 0.32
+        },
+        {
+          "date": "2025-01-06",
+          "label": "Jan 6",
+          "value": 0.34
+        },
+        {
+          "date": "2025-01-07",
+          "label": "Jan 7",
+          "value": 0.37
+        },
+        {
+          "date": "2025-01-08",
+          "label": "Jan 8",
+          "value": 0.39
+        },
+        {
+          "date": "2025-01-09",
+          "label": "Jan 9",
+          "value": 0.41
+        },
+        {
+          "date": "2025-01-10",
+          "label": "Jan 10",
+          "value": 0.37
+        },
+        {
+          "date": "2025-01-13",
+          "label": "Jan 13",
+          "value": 0.39
+        },
+        {
+          "date": "2025-01-14",
+          "label": "Jan 14",
+          "value": 0.41
+        },
+        {
+          "date": "2025-01-15",
+          "label": "Jan 15",
+          "value": 0.39
+        },
+        {
+          "date": "2025-01-16",
+          "label": "Jan 16",
+          "value": 0.38
+        },
+        {
+          "date": "2025-01-17",
+          "label": "Jan 17",
+          "value": 0.34
+        },
+        {
+          "date": "2025-01-21",
+          "label": "Jan 21",
+          "value": 0.28
+        },
+        {
+          "date": "2025-01-22",
+          "label": "Jan 22",
+          "value": 0.31
+        },
+        {
+          "date": "2025-01-23",
+          "label": "Jan 23",
+          "value": 0.36
+        },
+        {
+          "date": "2025-01-24",
+          "label": "Jan 24",
+          "value": 0.36
+        },
+        {
+          "date": "2025-01-27",
+          "label": "Jan 27",
+          "value": 0.36
+        },
+        {
+          "date": "2025-01-28",
+          "label": "Jan 28",
+          "value": 0.36
+        },
+        {
+          "date": "2025-01-29",
+          "label": "Jan 29",
+          "value": 0.34
+        },
+        {
+          "date": "2025-01-30",
+          "label": "Jan 30",
+          "value": 0.34
+        },
+        {
+          "date": "2025-01-31",
+          "label": "Jan 31",
+          "value": 0.36
+        },
+        {
+          "date": "2025-02-03",
+          "label": "Feb 3",
+          "value": 0.28
+        },
+        {
+          "date": "2025-02-04",
+          "label": "Feb 4",
+          "value": 0.31
+        },
+        {
+          "date": "2025-02-05",
+          "label": "Feb 5",
+          "value": 0.26
+        },
+        {
+          "date": "2025-02-06",
+          "label": "Feb 6",
+          "value": 0.24
+        },
+        {
+          "date": "2025-02-07",
+          "label": "Feb 7",
+          "value": 0.2
+        },
+        {
+          "date": "2025-02-10",
+          "label": "Feb 10",
+          "value": 0.23
+        },
+        {
+          "date": "2025-02-11",
+          "label": "Feb 11",
+          "value": 0.25
+        },
+        {
+          "date": "2025-02-12",
+          "label": "Feb 12",
+          "value": 0.26
+        },
+        {
+          "date": "2025-02-13",
+          "label": "Feb 13",
+          "value": 0.21
+        },
+        {
+          "date": "2025-02-14",
+          "label": "Feb 14",
+          "value": 0.21
+        },
+        {
+          "date": "2025-02-18",
+          "label": "Feb 18",
+          "value": 0.26
+        },
+        {
+          "date": "2025-02-19",
+          "label": "Feb 19",
+          "value": 0.25
+        },
+        {
+          "date": "2025-02-20",
+          "label": "Feb 20",
+          "value": 0.22
+        },
+        {
+          "date": "2025-02-21",
+          "label": "Feb 21",
+          "value": 0.23
+        },
+        {
+          "date": "2025-02-24",
+          "label": "Feb 24",
+          "value": 0.27
+        },
+        {
+          "date": "2025-02-25",
+          "label": "Feb 25",
+          "value": 0.23
+        },
+        {
+          "date": "2025-02-26",
+          "label": "Feb 26",
+          "value": 0.2
+        },
+        {
+          "date": "2025-02-27",
+          "label": "Feb 27",
+          "value": 0.22
+        },
+        {
+          "date": "2025-02-28",
+          "label": "Feb 28",
+          "value": 0.25
+        },
+        {
+          "date": "2025-03-03",
+          "label": "Mar 3",
+          "value": 0.2
+        },
+        {
+          "date": "2025-03-04",
+          "label": "Mar 4",
+          "value": 0.26
+        },
+        {
+          "date": "2025-03-05",
+          "label": "Mar 5",
+          "value": 0.29
+        },
+        {
+          "date": "2025-03-06",
+          "label": "Mar 6",
+          "value": 0.33
+        },
+        {
+          "date": "2025-03-07",
+          "label": "Mar 7",
+          "value": 0.33
+        },
+        {
+          "date": "2025-03-10",
+          "label": "Mar 10",
+          "value": 0.33
+        },
+        {
+          "date": "2025-03-11",
+          "label": "Mar 11",
+          "value": 0.34
+        },
+        {
+          "date": "2025-03-12",
+          "label": "Mar 12",
+          "value": 0.31
+        },
+        {
+          "date": "2025-03-13",
+          "label": "Mar 13",
+          "value": 0.33
+        },
+        {
+          "date": "2025-03-14",
+          "label": "Mar 14",
+          "value": 0.29
+        },
+        {
+          "date": "2025-03-17",
+          "label": "Mar 17",
+          "value": 0.25
+        },
+        {
+          "date": "2025-03-18",
+          "label": "Mar 18",
+          "value": 0.25
+        },
+        {
+          "date": "2025-03-19",
+          "label": "Mar 19",
+          "value": 0.26
+        },
+        {
+          "date": "2025-03-20",
+          "label": "Mar 20",
+          "value": 0.29
+        },
+        {
+          "date": "2025-03-21",
+          "label": "Mar 21",
+          "value": 0.31
+        },
+        {
+          "date": "2025-03-24",
+          "label": "Mar 24",
+          "value": 0.3
+        },
+        {
+          "date": "2025-03-25",
+          "label": "Mar 25",
+          "value": 0.35
+        },
+        {
+          "date": "2025-03-26",
+          "label": "Mar 26",
+          "value": 0.37
+        },
+        {
+          "date": "2025-03-27",
+          "label": "Mar 27",
+          "value": 0.41
+        },
+        {
+          "date": "2025-03-28",
+          "label": "Mar 28",
+          "value": 0.38
+        },
+        {
+          "date": "2025-03-31",
+          "label": "Mar 31",
+          "value": 0.34
+        },
+        {
+          "date": "2025-04-01",
+          "label": "Apr 1",
+          "value": 0.3
+        },
+        {
+          "date": "2025-04-02",
+          "label": "Apr 2",
+          "value": 0.29
+        },
+        {
+          "date": "2025-04-03",
+          "label": "Apr 3",
+          "value": 0.35
+        },
+        {
+          "date": "2025-04-04",
+          "label": "Apr 4",
+          "value": 0.33
+        },
+        {
+          "date": "2025-04-07",
+          "label": "Apr 7",
+          "value": 0.42
+        },
+        {
+          "date": "2025-04-08",
+          "label": "Apr 8",
+          "value": 0.55
+        },
+        {
+          "date": "2025-04-09",
+          "label": "Apr 9",
+          "value": 0.43
+        },
+        {
+          "date": "2025-04-10",
+          "label": "Apr 10",
+          "value": 0.56
+        },
+        {
+          "date": "2025-04-11",
+          "label": "Apr 11",
+          "value": 0.52
+        },
+        {
+          "date": "2025-04-14",
+          "label": "Apr 14",
+          "value": 0.54
+        },
+        {
+          "date": "2025-04-15",
+          "label": "Apr 15",
+          "value": 0.51
+        },
+        {
+          "date": "2025-04-16",
+          "label": "Apr 16",
+          "value": 0.52
+        },
+        {
+          "date": "2025-04-17",
+          "label": "Apr 17",
+          "value": 0.53
+        },
+        {
+          "date": "2025-04-21",
+          "label": "Apr 21",
+          "value": 0.67
+        },
+        {
+          "date": "2025-04-22",
+          "label": "Apr 22",
+          "value": 0.65
+        },
+        {
+          "date": "2025-04-23",
+          "label": "Apr 23",
+          "value": 0.59
+        },
+        {
+          "date": "2025-04-24",
+          "label": "Apr 24",
+          "value": 0.55
+        },
+        {
+          "date": "2025-04-25",
+          "label": "Apr 25",
+          "value": 0.55
+        },
+        {
+          "date": "2025-04-28",
+          "label": "Apr 28",
+          "value": 0.56
+        },
+        {
+          "date": "2025-04-29",
+          "label": "Apr 29",
+          "value": 0.54
+        },
+        {
+          "date": "2025-04-30",
+          "label": "Apr 30",
+          "value": 0.57
+        },
+        {
+          "date": "2025-05-01",
+          "label": "May 1",
+          "value": 0.55
+        },
+        {
+          "date": "2025-05-02",
+          "label": "May 2",
+          "value": 0.5
+        },
+        {
+          "date": "2025-05-05",
+          "label": "May 5",
+          "value": 0.53
+        },
+        {
+          "date": "2025-05-06",
+          "label": "May 6",
+          "value": 0.52
+        },
+        {
+          "date": "2025-05-07",
+          "label": "May 7",
+          "value": 0.48
+        },
+        {
+          "date": "2025-05-08",
+          "label": "May 8",
+          "value": 0.47
+        },
+        {
+          "date": "2025-05-09",
+          "label": "May 9",
+          "value": 0.49
+        },
+        {
+          "date": "2025-05-12",
+          "label": "May 12",
+          "value": 0.47
+        },
+        {
+          "date": "2025-05-13",
+          "label": "May 13",
+          "value": 0.47
+        },
+        {
+          "date": "2025-05-14",
+          "label": "May 14",
+          "value": 0.48
+        },
+        {
+          "date": "2025-05-15",
+          "label": "May 15",
+          "value": 0.49
+        },
+        {
+          "date": "2025-05-16",
+          "label": "May 16",
+          "value": 0.45
+        },
+        {
+          "date": "2025-05-19",
+          "label": "May 19",
+          "value": 0.49
+        },
+        {
+          "date": "2025-05-20",
+          "label": "May 20",
+          "value": 0.51
+        },
+        {
+          "date": "2025-05-21",
+          "label": "May 21",
+          "value": 0.58
+        },
+        {
+          "date": "2025-05-22",
+          "label": "May 22",
+          "value": 0.54
+        },
+        {
+          "date": "2025-05-23",
+          "label": "May 23",
+          "value": 0.51
+        },
+        {
+          "date": "2025-05-27",
+          "label": "May 27",
+          "value": 0.51
+        },
+        {
+          "date": "2025-05-28",
+          "label": "May 28",
+          "value": 0.51
+        },
+        {
+          "date": "2025-05-29",
+          "label": "May 29",
+          "value": 0.51
+        },
+        {
+          "date": "2025-05-30",
+          "label": "May 30",
+          "value": 0.52
+        },
+        {
+          "date": "2025-06-02",
+          "label": "Jun 2",
+          "value": 0.52
+        },
+        {
+          "date": "2025-06-03",
+          "label": "Jun 3",
+          "value": 0.5
+        },
+        {
+          "date": "2025-06-04",
+          "label": "Jun 4",
+          "value": 0.5
+        },
+        {
+          "date": "2025-06-05",
+          "label": "Jun 5",
+          "value": 0.48
+        },
+        {
+          "date": "2025-06-06",
+          "label": "Jun 6",
+          "value": 0.47
+        },
+        {
+          "date": "2025-06-09",
+          "label": "Jun 9",
+          "value": 0.48
+        },
+        {
+          "date": "2025-06-10",
+          "label": "Jun 10",
+          "value": 0.46
+        },
+        {
+          "date": "2025-06-11",
+          "label": "Jun 11",
+          "value": 0.47
+        },
+        {
+          "date": "2025-06-12",
+          "label": "Jun 12",
+          "value": 0.46
+        },
+        {
+          "date": "2025-06-13",
+          "label": "Jun 13",
+          "value": 0.45
+        },
+        {
+          "date": "2025-06-16",
+          "label": "Jun 16",
+          "value": 0.49
+        },
+        {
+          "date": "2025-06-17",
+          "label": "Jun 17",
+          "value": 0.45
+        },
+        {
+          "date": "2025-06-18",
+          "label": "Jun 18",
+          "value": 0.44
+        },
+        {
+          "date": "2025-06-20",
+          "label": "Jun 20",
+          "value": 0.48
+        },
+        {
+          "date": "2025-06-23",
+          "label": "Jun 23",
+          "value": 0.5
+        },
+        {
+          "date": "2025-06-24",
+          "label": "Jun 24",
+          "value": 0.55
+        },
+        {
+          "date": "2025-06-25",
+          "label": "Jun 25",
+          "value": 0.55
+        },
+        {
+          "date": "2025-06-26",
+          "label": "Jun 26",
+          "value": 0.56
+        },
+        {
+          "date": "2025-06-27",
+          "label": "Jun 27",
+          "value": 0.56
+        },
+        {
+          "date": "2025-06-30",
+          "label": "Jun 30",
+          "value": 0.52
+        },
+        {
+          "date": "2025-07-01",
+          "label": "Jul 1",
+          "value": 0.48
+        },
+        {
+          "date": "2025-07-02",
+          "label": "Jul 2",
+          "value": 0.52
+        },
+        {
+          "date": "2025-07-03",
+          "label": "Jul 3",
+          "value": 0.47
+        },
+        {
+          "date": "2025-07-07",
+          "label": "Jul 7",
+          "value": 0.5
+        },
+        {
+          "date": "2025-07-08",
+          "label": "Jul 8",
+          "value": 0.52
+        },
+        {
+          "date": "2025-07-09",
+          "label": "Jul 9",
+          "value": 0.48
+        },
+        {
+          "date": "2025-07-10",
+          "label": "Jul 10",
+          "value": 0.49
+        },
+        {
+          "date": "2025-07-11",
+          "label": "Jul 11",
+          "value": 0.53
+        },
+        {
+          "date": "2025-07-14",
+          "label": "Jul 14",
+          "value": 0.53
+        },
+        {
+          "date": "2025-07-15",
+          "label": "Jul 15",
+          "value": 0.55
+        },
+        {
+          "date": "2025-07-16",
+          "label": "Jul 16",
+          "value": 0.58
+        },
+        {
+          "date": "2025-07-17",
+          "label": "Jul 17",
+          "value": 0.56
+        },
+        {
+          "date": "2025-07-18",
+          "label": "Jul 18",
+          "value": 0.56
+        },
+        {
+          "date": "2025-07-21",
+          "label": "Jul 21",
+          "value": 0.53
+        },
+        {
+          "date": "2025-07-22",
+          "label": "Jul 22",
+          "value": 0.52
+        },
+        {
+          "date": "2025-07-23",
+          "label": "Jul 23",
+          "value": 0.52
+        },
+        {
+          "date": "2025-07-24",
+          "label": "Jul 24",
+          "value": 0.52
+        },
+        {
+          "date": "2025-07-25",
+          "label": "Jul 25",
+          "value": 0.49
+        },
+        {
+          "date": "2025-07-28",
+          "label": "Jul 28",
+          "value": 0.51
+        },
+        {
+          "date": "2025-07-29",
+          "label": "Jul 29",
+          "value": 0.48
+        },
+        {
+          "date": "2025-07-30",
+          "label": "Jul 30",
+          "value": 0.44
+        },
+        {
+          "date": "2025-07-31",
+          "label": "Jul 31",
+          "value": 0.43
+        },
+        {
+          "date": "2025-08-01",
+          "label": "Aug 1",
+          "value": 0.54
+        },
+        {
+          "date": "2025-08-04",
+          "label": "Aug 4",
+          "value": 0.53
+        },
+        {
+          "date": "2025-08-05",
+          "label": "Aug 5",
+          "value": 0.5
+        },
+        {
+          "date": "2025-08-06",
+          "label": "Aug 6",
+          "value": 0.53
+        },
+        {
+          "date": "2025-08-07",
+          "label": "Aug 7",
+          "value": 0.51
+        },
+        {
+          "date": "2025-08-08",
+          "label": "Aug 8",
+          "value": 0.51
+        },
+        {
+          "date": "2025-08-11",
+          "label": "Aug 11",
+          "value": 0.51
+        },
+        {
+          "date": "2025-08-12",
+          "label": "Aug 12",
+          "value": 0.57
+        },
+        {
+          "date": "2025-08-13",
+          "label": "Aug 13",
+          "value": 0.57
+        },
+        {
+          "date": "2025-08-14",
+          "label": "Aug 14",
+          "value": 0.55
+        },
+        {
+          "date": "2025-08-15",
+          "label": "Aug 15",
+          "value": 0.58
+        },
+        {
+          "date": "2025-08-18",
+          "label": "Aug 18",
+          "value": 0.57
+        },
+        {
+          "date": "2025-08-19",
+          "label": "Aug 19",
+          "value": 0.55
+        },
+        {
+          "date": "2025-08-20",
+          "label": "Aug 20",
+          "value": 0.55
+        },
+        {
+          "date": "2025-08-21",
+          "label": "Aug 21",
+          "value": 0.54
+        },
+        {
+          "date": "2025-08-22",
+          "label": "Aug 22",
+          "value": 0.58
+        },
+        {
+          "date": "2025-08-25",
+          "label": "Aug 25",
+          "value": 0.55
+        },
+        {
+          "date": "2025-08-26",
+          "label": "Aug 26",
+          "value": 0.65
+        },
+        {
+          "date": "2025-08-27",
+          "label": "Aug 27",
+          "value": 0.65
+        },
+        {
+          "date": "2025-08-28",
+          "label": "Aug 28",
+          "value": 0.6
+        },
+        {
+          "date": "2025-08-29",
+          "label": "Aug 29",
+          "value": 0.64
+        },
+        {
+          "date": "2025-09-02",
+          "label": "Sep 2",
+          "value": 0.62
+        },
+        {
+          "date": "2025-09-03",
+          "label": "Sep 3",
+          "value": 0.61
+        },
+        {
+          "date": "2025-09-04",
+          "label": "Sep 4",
+          "value": 0.58
+        },
+        {
+          "date": "2025-09-05",
+          "label": "Sep 5",
+          "value": 0.59
+        },
+        {
+          "date": "2025-09-08",
+          "label": "Sep 8",
+          "value": 0.56
+        },
+        {
+          "date": "2025-09-09",
+          "label": "Sep 9",
+          "value": 0.54
+        },
+        {
+          "date": "2025-09-10",
+          "label": "Sep 10",
+          "value": 0.5
+        },
+        {
+          "date": "2025-09-11",
+          "label": "Sep 11",
+          "value": 0.49
+        },
+        {
+          "date": "2025-09-12",
+          "label": "Sep 12",
+          "value": 0.5
+        },
+        {
+          "date": "2025-09-15",
+          "label": "Sep 15",
+          "value": 0.51
+        },
+        {
+          "date": "2025-09-16",
+          "label": "Sep 16",
+          "value": 0.53
+        },
+        {
+          "date": "2025-09-17",
+          "label": "Sep 17",
+          "value": 0.54
+        },
+        {
+          "date": "2025-09-18",
+          "label": "Sep 18",
+          "value": 0.54
+        },
+        {
+          "date": "2025-09-19",
+          "label": "Sep 19",
+          "value": 0.57
+        },
+        {
+          "date": "2025-09-22",
+          "label": "Sep 22",
+          "value": 0.54
+        },
+        {
+          "date": "2025-09-23",
+          "label": "Sep 23",
+          "value": 0.59
+        },
+        {
+          "date": "2025-09-24",
+          "label": "Sep 24",
+          "value": 0.59
+        },
+        {
+          "date": "2025-09-25",
+          "label": "Sep 25",
+          "value": 0.54
+        },
+        {
+          "date": "2025-09-26",
+          "label": "Sep 26",
+          "value": 0.57
+        },
+        {
+          "date": "2025-09-29",
+          "label": "Sep 29",
+          "value": 0.52
+        },
+        {
+          "date": "2025-09-30",
+          "label": "Sep 30",
+          "value": 0.56
+        },
+        {
+          "date": "2025-10-01",
+          "label": "Oct 1",
+          "value": 0.57
+        },
+        {
+          "date": "2025-10-02",
+          "label": "Oct 2",
+          "value": 0.55
+        },
+        {
+          "date": "2025-10-03",
+          "label": "Oct 3",
+          "value": 0.55
+        },
+        {
+          "date": "2025-10-06",
+          "label": "Oct 6",
+          "value": 0.58
+        },
+        {
+          "date": "2025-10-07",
+          "label": "Oct 7",
+          "value": 0.57
+        },
+        {
+          "date": "2025-10-08",
+          "label": "Oct 8",
+          "value": 0.55
+        },
+        {
+          "date": "2025-10-09",
+          "label": "Oct 9",
+          "value": 0.54
+        },
+        {
+          "date": "2025-10-10",
+          "label": "Oct 10",
+          "value": 0.53
+        },
+        {
+          "date": "2025-10-14",
+          "label": "Oct 14",
+          "value": 0.55
+        },
+        {
+          "date": "2025-10-15",
+          "label": "Oct 15",
+          "value": 0.55
+        },
+        {
+          "date": "2025-10-16",
+          "label": "Oct 16",
+          "value": 0.58
+        },
+        {
+          "date": "2025-10-17",
+          "label": "Oct 17",
+          "value": 0.56
+        },
+        {
+          "date": "2025-10-20",
+          "label": "Oct 20",
+          "value": 0.54
+        },
+        {
+          "date": "2025-10-21",
+          "label": "Oct 21",
+          "value": 0.53
+        },
+        {
+          "date": "2025-10-22",
+          "label": "Oct 22",
+          "value": 0.52
+        },
+        {
+          "date": "2025-10-23",
+          "label": "Oct 23",
+          "value": 0.53
+        },
+        {
+          "date": "2025-10-24",
+          "label": "Oct 24",
+          "value": 0.54
+        },
+        {
+          "date": "2025-10-27",
+          "label": "Oct 27",
+          "value": 0.53
+        },
+        {
+          "date": "2025-10-28",
+          "label": "Oct 28",
+          "value": 0.52
+        },
+        {
+          "date": "2025-10-29",
+          "label": "Oct 29",
+          "value": 0.49
+        },
+        {
+          "date": "2025-10-30",
+          "label": "Oct 30",
+          "value": 0.5
+        },
+        {
+          "date": "2025-10-31",
+          "label": "Oct 31",
+          "value": 0.51
+        },
+        {
+          "date": "2025-11-03",
+          "label": "Nov 3",
+          "value": 0.53
+        },
+        {
+          "date": "2025-11-04",
+          "label": "Nov 4",
+          "value": 0.52
+        },
+        {
+          "date": "2025-11-05",
+          "label": "Nov 5",
+          "value": 0.54
+        },
+        {
+          "date": "2025-11-06",
+          "label": "Nov 6",
+          "value": 0.54
+        },
+        {
+          "date": "2025-11-07",
+          "label": "Nov 7",
+          "value": 0.56
+        },
+        {
+          "date": "2025-11-10",
+          "label": "Nov 10",
+          "value": 0.55
+        },
+        {
+          "date": "2025-11-12",
+          "label": "Nov 12",
+          "value": 0.52
+        },
+        {
+          "date": "2025-11-13",
+          "label": "Nov 13",
+          "value": 0.53
+        },
+        {
+          "date": "2025-11-14",
+          "label": "Nov 14",
+          "value": 0.52
+        },
+        {
+          "date": "2025-11-17",
+          "label": "Nov 17",
+          "value": 0.53
+        },
+        {
+          "date": "2025-11-18",
+          "label": "Nov 18",
+          "value": 0.54
+        },
+        {
+          "date": "2025-11-19",
+          "label": "Nov 19",
+          "value": 0.55
+        },
+        {
+          "date": "2025-11-20",
+          "label": "Nov 20",
+          "value": 0.55
+        },
+        {
+          "date": "2025-11-21",
+          "label": "Nov 21",
+          "value": 0.55
+        },
+        {
+          "date": "2025-11-24",
+          "label": "Nov 24",
+          "value": 0.58
+        },
+        {
+          "date": "2025-11-25",
+          "label": "Nov 25",
+          "value": 0.58
+        },
+        {
+          "date": "2025-11-26",
+          "label": "Nov 26",
+          "value": 0.55
+        },
+        {
+          "date": "2025-11-28",
+          "label": "Nov 28",
+          "value": 0.55
+        },
+        {
+          "date": "2025-12-01",
+          "label": "Dec 1",
+          "value": 0.55
+        },
+        {
+          "date": "2025-12-02",
+          "label": "Dec 2",
+          "value": 0.58
+        },
+        {
+          "date": "2025-12-03",
+          "label": "Dec 3",
+          "value": 0.57
+        },
+        {
+          "date": "2025-12-04",
+          "label": "Dec 4",
+          "value": 0.59
+        },
+        {
+          "date": "2025-12-05",
+          "label": "Dec 5",
+          "value": 0.58
+        },
+        {
+          "date": "2025-12-08",
+          "label": "Dec 8",
+          "value": 0.6
+        },
+        {
+          "date": "2025-12-09",
+          "label": "Dec 9",
+          "value": 0.57
+        },
+        {
+          "date": "2025-12-10",
+          "label": "Dec 10",
+          "value": 0.59
+        },
+        {
+          "date": "2025-12-11",
+          "label": "Dec 11",
+          "value": 0.62
+        },
+        {
+          "date": "2025-12-12",
+          "label": "Dec 12",
+          "value": 0.67
+        },
+        {
+          "date": "2025-12-15",
+          "label": "Dec 15",
+          "value": 0.67
+        },
+        {
+          "date": "2025-12-16",
+          "label": "Dec 16",
+          "value": 0.67
+        },
+        {
+          "date": "2025-12-17",
+          "label": "Dec 17",
+          "value": 0.67
+        },
+        {
+          "date": "2025-12-18",
+          "label": "Dec 18",
+          "value": 0.66
+        },
+        {
+          "date": "2025-12-19",
+          "label": "Dec 19",
+          "value": 0.68
+        },
+        {
+          "date": "2025-12-22",
+          "label": "Dec 22",
+          "value": 0.73
+        },
+        {
+          "date": "2025-12-23",
+          "label": "Dec 23",
+          "value": 0.7
+        },
+        {
+          "date": "2025-12-24",
+          "label": "Dec 24",
+          "value": 0.68
+        },
+        {
+          "date": "2025-12-26",
+          "label": "Dec 26",
+          "value": 0.68
+        },
+        {
+          "date": "2025-12-29",
+          "label": "Dec 29",
+          "value": 0.67
+        },
+        {
+          "date": "2025-12-30",
+          "label": "Dec 30",
+          "value": 0.69
+        },
+        {
+          "date": "2025-12-31",
+          "label": "Dec 31",
+          "value": 0.71
+        },
+        {
+          "date": "2026-01-02",
+          "label": "Jan 2",
+          "value": 0.72
+        },
+        {
+          "date": "2026-01-05",
+          "label": "Jan 5",
+          "value": 0.71
+        },
+        {
+          "date": "2026-01-06",
+          "label": "Jan 6",
+          "value": 0.71
+        },
+        {
+          "date": "2026-01-07",
+          "label": "Jan 7",
+          "value": 0.68
+        },
+        {
+          "date": "2026-01-08",
+          "label": "Jan 8",
+          "value": 0.7
+        },
+        {
+          "date": "2026-01-09",
+          "label": "Jan 9",
+          "value": 0.64
+        },
+        {
+          "date": "2026-01-12",
+          "label": "Jan 12",
+          "value": 0.65
+        },
+        {
+          "date": "2026-01-13",
+          "label": "Jan 13",
+          "value": 0.65
+        },
+        {
+          "date": "2026-01-14",
+          "label": "Jan 14",
+          "value": 0.64
+        },
+        {
+          "date": "2026-01-15",
+          "label": "Jan 15",
+          "value": 0.61
+        },
+        {
+          "date": "2026-01-16",
+          "label": "Jan 16",
+          "value": 0.65
+        },
+        {
+          "date": "2026-01-20",
+          "label": "Jan 20",
+          "value": 0.7
+        },
+        {
+          "date": "2026-01-21",
+          "label": "Jan 21",
+          "value": 0.66
+        },
+        {
+          "date": "2026-01-22",
+          "label": "Jan 22",
+          "value": 0.65
+        },
+        {
+          "date": "2026-01-23",
+          "label": "Jan 23",
+          "value": 0.64
+        },
+        {
+          "date": "2026-01-26",
+          "label": "Jan 26",
+          "value": 0.66
+        },
+        {
+          "date": "2026-01-27",
+          "label": "Jan 27",
+          "value": 0.71
+        },
+        {
+          "date": "2026-01-28",
+          "label": "Jan 28",
+          "value": 0.7
+        },
+        {
+          "date": "2026-01-29",
+          "label": "Jan 29",
+          "value": 0.71
+        },
+        {
+          "date": "2026-01-30",
+          "label": "Jan 30",
+          "value": 0.74
+        },
+        {
+          "date": "2026-02-02",
+          "label": "Feb 2",
+          "value": 0.72
+        },
+        {
+          "date": "2026-02-03",
+          "label": "Feb 3",
+          "value": 0.71
+        },
+        {
+          "date": "2026-02-04",
+          "label": "Feb 4",
+          "value": 0.72
+        },
+        {
+          "date": "2026-02-05",
+          "label": "Feb 5",
+          "value": 0.74
+        },
+        {
+          "date": "2026-02-06",
+          "label": "Feb 6",
+          "value": 0.72
+        },
+        {
+          "date": "2026-02-09",
+          "label": "Feb 9",
+          "value": 0.74
+        },
+        {
+          "date": "2026-02-10",
+          "label": "Feb 10",
+          "value": 0.71
+        },
+        {
+          "date": "2026-02-11",
+          "label": "Feb 11",
+          "value": 0.66
+        },
+        {
+          "date": "2026-02-12",
+          "label": "Feb 12",
+          "value": 0.62
+        },
+        {
+          "date": "2026-02-13",
+          "label": "Feb 13",
+          "value": 0.64
+        },
+        {
+          "date": "2026-02-17",
+          "label": "Feb 17",
+          "value": 0.62
+        },
+        {
+          "date": "2026-02-18",
+          "label": "Feb 18",
+          "value": 0.62
+        },
+        {
+          "date": "2026-02-19",
+          "label": "Feb 19",
+          "value": 0.61
+        },
+        {
+          "date": "2026-02-20",
+          "label": "Feb 20",
+          "value": 0.6
+        },
+        {
+          "date": "2026-02-23",
+          "label": "Feb 23",
+          "value": 0.6
+        },
+        {
+          "date": "2026-02-24",
+          "label": "Feb 24",
+          "value": 0.61
+        },
+        {
+          "date": "2026-02-25",
+          "label": "Feb 25",
+          "value": 0.6
+        },
+        {
+          "date": "2026-02-26",
+          "label": "Feb 26",
+          "value": 0.6
+        },
+        {
+          "date": "2026-02-27",
+          "label": "Feb 27",
+          "value": 0.59
+        },
+        {
+          "date": "2026-03-02",
+          "label": "Mar 2",
+          "value": 0.58
+        },
+        {
+          "date": "2026-03-03",
+          "label": "Mar 3",
+          "value": 0.55
+        },
+        {
+          "date": "2026-03-04",
+          "label": "Mar 4",
+          "value": 0.55
+        },
+        {
+          "date": "2026-03-05",
+          "label": "Mar 5",
+          "value": 0.56
+        },
+        {
+          "date": "2026-03-06",
+          "label": "Mar 6",
+          "value": 0.59
+        },
+        {
+          "date": "2026-03-09",
+          "label": "Mar 9",
+          "value": 0.56
+        },
+        {
+          "date": "2026-03-10",
+          "label": "Mar 10",
+          "value": 0.58
+        },
+        {
+          "date": "2026-03-11",
+          "label": "Mar 11",
+          "value": 0.57
+        },
+        {
+          "date": "2026-03-12",
+          "label": "Mar 12",
+          "value": 0.51
+        },
+        {
+          "date": "2026-03-13",
+          "label": "Mar 13",
+          "value": 0.55
+        },
+        {
+          "date": "2026-03-16",
+          "label": "Mar 16",
+          "value": 0.55
+        },
+        {
+          "date": "2026-03-17",
+          "label": "Mar 17",
+          "value": 0.52
+        },
+        {
+          "date": "2026-03-18",
+          "label": "Mar 18",
+          "value": 0.5
+        },
+        {
+          "date": "2026-03-19",
+          "label": "Mar 19",
+          "value": 0.46
+        },
+        {
+          "date": "2026-03-20",
+          "label": "Mar 20",
+          "value": 0.51
+        },
+        {
+          "date": "2026-03-23",
+          "label": "Mar 23",
+          "value": 0.51
+        },
+        {
+          "date": "2026-03-24",
+          "label": "Mar 24",
+          "value": 0.49
+        },
+        {
+          "date": "2026-03-25",
+          "label": "Mar 25",
+          "value": 0.49
+        },
+        {
+          "date": "2026-03-26",
+          "label": "Mar 26",
+          "value": 0.46
+        },
+        {
+          "date": "2026-03-27",
+          "label": "Mar 27",
+          "value": 0.56
+        },
+        {
+          "date": "2026-03-30",
+          "label": "Mar 30",
+          "value": 0.53
+        },
+        {
+          "date": "2026-03-31",
+          "label": "Mar 31",
+          "value": 0.51
+        },
+        {
+          "date": "2026-04-01",
+          "label": "Apr 1",
+          "value": 0.52
+        },
+        {
+          "date": "2026-04-02",
+          "label": "Apr 2",
+          "value": 0.52
+        },
+        {
+          "date": "2026-04-03",
+          "label": "Apr 3",
+          "value": 0.51
+        },
+        {
+          "date": "2026-04-06",
+          "label": "Apr 6",
+          "value": 0.5
+        },
+        {
+          "date": "2026-04-07",
+          "label": "Apr 7",
+          "value": 0.52
+        },
+        {
+          "date": "2026-04-08",
+          "label": "Apr 8",
+          "value": 0.5
+        },
+        {
+          "date": "2026-04-09",
+          "label": "Apr 9",
+          "value": 0.51
+        },
+        {
+          "date": "2026-04-10",
+          "label": "Apr 10",
+          "value": 0.5
+        }
+      ],
+      "previous": {
+        "label": "Apr 9",
+        "date": "2026-04-09",
+        "value": 0.51,
+        "formatted": "0.5 pp"
+      },
+      "delta": {
+        "label": "vs Apr 9",
+        "value": -0.010000000000000009,
+        "formatted": "-0.0 pp",
+        "direction": "flat"
+      }
+    },
+    {
+      "id": "bis-debt-service-ratio",
+      "title": "Private-sector debt service ratio",
+      "section": "balance-context",
+      "source": "BIS",
+      "sourceUrl": "https://data.bis.org/topics/DSR",
+      "frequency": "quarterly",
+      "visualization": "line",
+      "unit": "percent",
+      "latest": {
+        "label": "Q3 25",
+        "date": "2025-09-30",
+        "value": 14.1,
+        "formatted": "14.1%"
+      },
+      "description": "The BIS private-sector debt service ratio stood at 14.1% in Q3 25.",
+      "rationale": "Debt-service pressure is best read as a continuous quarterly line because its persistence matters more than single-quarter noise.",
+      "showZeroLine": false,
+      "series": [
+        {
+          "date": "2018-12-31",
+          "label": "Q4 18",
+          "value": 14.7
+        },
+        {
+          "date": "2019-03-31",
+          "label": "Q1 19",
+          "value": 14.7
+        },
+        {
+          "date": "2019-06-30",
+          "label": "Q2 19",
+          "value": 14.8
+        },
+        {
+          "date": "2019-09-30",
+          "label": "Q3 19",
+          "value": 14.8
+        },
+        {
+          "date": "2019-12-31",
+          "label": "Q4 19",
+          "value": 14.7
+        },
+        {
+          "date": "2020-03-31",
+          "label": "Q1 20",
+          "value": 14.8
+        },
+        {
+          "date": "2020-06-30",
+          "label": "Q2 20",
+          "value": 14.6
+        },
+        {
+          "date": "2020-09-30",
+          "label": "Q3 20",
+          "value": 14.3
+        },
+        {
+          "date": "2020-12-31",
+          "label": "Q4 20",
+          "value": 14.1
+        },
+        {
+          "date": "2021-03-31",
+          "label": "Q1 21",
+          "value": 13.7
+        },
+        {
+          "date": "2021-06-30",
+          "label": "Q2 21",
+          "value": 13.9
+        },
+        {
+          "date": "2021-09-30",
+          "label": "Q3 21",
+          "value": 13.8
+        },
+        {
+          "date": "2021-12-31",
+          "label": "Q4 21",
+          "value": 13.9
+        },
+        {
+          "date": "2022-03-31",
+          "label": "Q1 22",
+          "value": 14.3
+        },
+        {
+          "date": "2022-06-30",
+          "label": "Q2 22",
+          "value": 14.5
+        },
+        {
+          "date": "2022-09-30",
+          "label": "Q3 22",
+          "value": 14.6
+        },
+        {
+          "date": "2022-12-31",
+          "label": "Q4 22",
+          "value": 14.8
+        },
+        {
+          "date": "2023-03-31",
+          "label": "Q1 23",
+          "value": 14.8
+        },
+        {
+          "date": "2023-06-30",
+          "label": "Q2 23",
+          "value": 14.7
+        },
+        {
+          "date": "2023-09-30",
+          "label": "Q3 23",
+          "value": 14.6
+        },
+        {
+          "date": "2023-12-31",
+          "label": "Q4 23",
+          "value": 14.5
+        },
+        {
+          "date": "2024-03-31",
+          "label": "Q1 24",
+          "value": 14.5
+        },
+        {
+          "date": "2024-06-30",
+          "label": "Q2 24",
+          "value": 14.5
+        },
+        {
+          "date": "2024-09-30",
+          "label": "Q3 24",
+          "value": 14.6
+        },
+        {
+          "date": "2024-12-31",
+          "label": "Q4 24",
+          "value": 14.4
+        },
+        {
+          "date": "2025-03-31",
+          "label": "Q1 25",
+          "value": 14.2
+        },
+        {
+          "date": "2025-06-30",
+          "label": "Q2 25",
+          "value": 14.2
+        },
+        {
+          "date": "2025-09-30",
+          "label": "Q3 25",
+          "value": 14.1
+        }
+      ],
+      "previous": {
+        "label": "Q2 25",
+        "date": "2025-06-30",
+        "value": 14.2,
+        "formatted": "14.2%"
+      },
+      "delta": {
+        "label": "vs Q2 25",
+        "value": -0.09999999999999964,
+        "formatted": "-0.1 pp",
+        "direction": "down"
+      }
+    },
+    {
+      "id": "bis-private-credit-gdp",
+      "title": "Private credit to GDP",
+      "section": "balance-context",
+      "source": "BIS",
+      "sourceUrl": "https://data.bis.org/topics/TOTAL_CREDIT",
+      "frequency": "quarterly",
+      "visualization": "area",
+      "unit": "percentOfGdp",
+      "latest": {
+        "label": "Q3 25",
+        "date": "2025-09-30",
+        "value": 140.4,
+        "formatted": "140.4%"
+      },
+      "description": "US private non-financial credit was 140.4% of GDP in Q3 25.",
+      "rationale": "An area chart emphasizes the stock-like nature of leverage relative to GDP while keeping the long-run trend readable.",
+      "showZeroLine": false,
+      "series": [
+        {
+          "date": "2018-12-31",
+          "label": "Q4 18",
+          "value": 153.2
+        },
+        {
+          "date": "2019-03-31",
+          "label": "Q1 19",
+          "value": 153.1
+        },
+        {
+          "date": "2019-06-30",
+          "label": "Q2 19",
+          "value": 153.4
+        },
+        {
+          "date": "2019-09-30",
+          "label": "Q3 19",
+          "value": 153.5
+        },
+        {
+          "date": "2019-12-31",
+          "label": "Q4 19",
+          "value": 152.9
+        },
+        {
+          "date": "2020-03-31",
+          "label": "Q1 20",
+          "value": 156
+        },
+        {
+          "date": "2020-06-30",
+          "label": "Q2 20",
+          "value": 161.8
+        },
+        {
+          "date": "2020-09-30",
+          "label": "Q3 20",
+          "value": 162.8
+        },
+        {
+          "date": "2020-12-31",
+          "label": "Q4 20",
+          "value": 164.1
+        },
+        {
+          "date": "2021-03-31",
+          "label": "Q1 21",
+          "value": 164.4
+        },
+        {
+          "date": "2021-06-30",
+          "label": "Q2 21",
+          "value": 162.4
+        },
+        {
+          "date": "2021-09-30",
+          "label": "Q3 21",
+          "value": 160.6
+        },
+        {
+          "date": "2021-12-31",
+          "label": "Q4 21",
+          "value": 159.2
+        },
+        {
+          "date": "2022-03-31",
+          "label": "Q1 22",
+          "value": 157.9
+        },
+        {
+          "date": "2022-06-30",
+          "label": "Q2 22",
+          "value": 156.8
+        },
+        {
+          "date": "2022-09-30",
+          "label": "Q3 22",
+          "value": 155
+        },
+        {
+          "date": "2022-12-31",
+          "label": "Q4 22",
+          "value": 153.4
+        },
+        {
+          "date": "2023-03-31",
+          "label": "Q1 23",
+          "value": 151.6
+        },
+        {
+          "date": "2023-06-30",
+          "label": "Q2 23",
+          "value": 150
+        },
+        {
+          "date": "2023-09-30",
+          "label": "Q3 23",
+          "value": 148.4
+        },
+        {
+          "date": "2023-12-31",
+          "label": "Q4 23",
+          "value": 147
+        },
+        {
+          "date": "2024-03-31",
+          "label": "Q1 24",
+          "value": 146
+        },
+        {
+          "date": "2024-06-30",
+          "label": "Q2 24",
+          "value": 145.1
+        },
+        {
+          "date": "2024-09-30",
+          "label": "Q3 24",
+          "value": 144.5
+        },
+        {
+          "date": "2024-12-31",
+          "label": "Q4 24",
+          "value": 142.5
+        },
+        {
+          "date": "2025-03-31",
+          "label": "Q1 25",
+          "value": 141.5
+        },
+        {
+          "date": "2025-06-30",
+          "label": "Q2 25",
+          "value": 140.9
+        },
+        {
+          "date": "2025-09-30",
+          "label": "Q3 25",
+          "value": 140.4
+        }
+      ],
+      "previous": {
+        "label": "Q2 25",
+        "date": "2025-06-30",
+        "value": 140.9,
+        "formatted": "140.9%"
+      },
+      "delta": {
+        "label": "vs Q2 25",
+        "value": -0.5,
+        "formatted": "-0.5 pp",
+        "direction": "down"
+      }
+    },
+    {
+      "id": "worldbank-gdp-growth",
+      "title": "World Bank annual GDP growth",
+      "section": "balance-context",
+      "source": "World Bank",
+      "sourceUrl": "https://api.worldbank.org/v2/country/USA/indicator/NY.GDP.MKTP.KD.ZG?format=json",
+      "frequency": "annual",
+      "visualization": "bar",
+      "unit": "percent",
+      "latest": {
+        "label": "2024",
+        "date": "2024-12-31",
+        "value": 2.79300127716779,
+        "formatted": "2.8%"
+      },
+      "description": "The latest complete World Bank GDP growth estimate for the US is 2.8% in 2024.",
+      "rationale": "Annual growth prints are discrete year-by-year observations, so bars are easier to compare than a smoothed line.",
+      "showZeroLine": true,
+      "series": [
+        {
+          "date": "2010-12-31",
+          "label": "2010",
+          "value": 2.69519257744442
+        },
+        {
+          "date": "2011-12-31",
+          "label": "2011",
+          "value": 1.56440685763506
+        },
+        {
+          "date": "2012-12-31",
+          "label": "2012",
+          "value": 2.28911338669843
+        },
+        {
+          "date": "2013-12-31",
+          "label": "2013",
+          "value": 2.11783009790057
+        },
+        {
+          "date": "2014-12-31",
+          "label": "2014",
+          "value": 2.52381981363968
+        },
+        {
+          "date": "2015-12-31",
+          "label": "2015",
+          "value": 2.94555045484053
+        },
+        {
+          "date": "2016-12-31",
+          "label": "2016",
+          "value": 1.81945147788167
+        },
+        {
+          "date": "2017-12-31",
+          "label": "2017",
+          "value": 2.45762229852507
+        },
+        {
+          "date": "2018-12-31",
+          "label": "2018",
+          "value": 2.96650506901305
+        },
+        {
+          "date": "2019-12-31",
+          "label": "2019",
+          "value": 2.58382533412825
+        },
+        {
+          "date": "2020-12-31",
+          "label": "2020",
+          "value": -2.16302914036166
+        },
+        {
+          "date": "2021-12-31",
+          "label": "2021",
+          "value": 6.05505293244555
+        },
+        {
+          "date": "2022-12-31",
+          "label": "2022",
+          "value": 2.51237531986017
+        },
+        {
+          "date": "2023-12-31",
+          "label": "2023",
+          "value": 2.88755600749487
+        },
+        {
+          "date": "2024-12-31",
+          "label": "2024",
+          "value": 2.79300127716779
+        }
+      ],
+      "previous": {
+        "label": "2023",
+        "date": "2023-12-31",
+        "value": 2.88755600749487,
+        "formatted": "2.9%"
+      },
+      "delta": {
+        "label": "vs 2023",
+        "value": -0.09455473032708017,
+        "formatted": "-0.1 pp",
+        "direction": "down"
+      }
+    },
+    {
+      "id": "worldbank-public-debt",
+      "title": "World Bank central government debt",
+      "section": "balance-context",
+      "source": "World Bank",
+      "sourceUrl": "https://api.worldbank.org/v2/country/USA/indicator/GC.DOD.TOTL.GD.ZS?format=json",
+      "frequency": "annual",
+      "visualization": "line",
+      "unit": "percentOfGdp",
+      "latest": {
+        "label": "2024",
+        "date": "2024-12-31",
+        "value": 117.973234857902,
+        "formatted": "118.0%"
+      },
+      "description": "Central government debt was 118.0% of GDP in 2024.",
+      "rationale": "Debt ratios evolve gradually, so a line is the clearest way to show the medium-run trend.",
+      "showZeroLine": false,
+      "series": [
+        {
+          "date": "2010-12-31",
+          "label": "2010",
+          "value": 85.1548294082739
+        },
+        {
+          "date": "2011-12-31",
+          "label": "2011",
+          "value": 89.7347177439651
+        },
+        {
+          "date": "2012-12-31",
+          "label": "2012",
+          "value": 93.8330014607143
+        },
+        {
+          "date": "2013-12-31",
+          "label": "2013",
+          "value": 95.7184835504169
+        },
+        {
+          "date": "2014-12-31",
+          "label": "2014",
+          "value": 95.9491132711014
+        },
+        {
+          "date": "2015-12-31",
+          "label": "2015",
+          "value": 96.6110565851958
+        },
+        {
+          "date": "2016-12-31",
+          "label": "2016",
+          "value": 98.6931939368279
+        },
+        {
+          "date": "2017-12-31",
+          "label": "2017",
+          "value": 97.8800564031882
+        },
+        {
+          "date": "2018-12-31",
+          "label": "2018",
+          "value": 99.2223695206525
+        },
+        {
+          "date": "2019-12-31",
+          "label": "2019",
+          "value": 100.979786328903
+        },
+        {
+          "date": "2020-12-31",
+          "label": "2020",
+          "value": 126.370405951231
+        },
+        {
+          "date": "2021-12-31",
+          "label": "2021",
+          "value": 120.367733355153
+        },
+        {
+          "date": "2022-12-31",
+          "label": "2022",
+          "value": 114.694842004206
+        },
+        {
+          "date": "2023-12-31",
+          "label": "2023",
+          "value": 116.918808847311
+        },
+        {
+          "date": "2024-12-31",
+          "label": "2024",
+          "value": 117.973234857902
+        }
+      ],
+      "previous": {
+        "label": "2023",
+        "date": "2023-12-31",
+        "value": 116.918808847311,
+        "formatted": "116.9%"
+      },
+      "delta": {
+        "label": "vs 2023",
+        "value": 1.0544260105910013,
+        "formatted": "+1.1 pp",
+        "direction": "up"
+      }
+    }
+  ],
+  "sourceStatus": [
+    {
+      "id": "imf",
+      "name": "IMF",
+      "status": "skipped",
+      "detail": "The IMF Data portal path was sign-in gated when this template was built on 2026-04-13; the adapter is left as an optional future extension rather than blocking the rest of the dashboard.",
+      "link": "https://data.imf.org/"
+    },
+    {
+      "id": "bls",
+      "name": "BLS",
+      "status": "live",
+      "detail": "Direct public API pull for labor market and CPI series.",
+      "link": "https://www.bls.gov/developers/"
+    },
+    {
+      "id": "fred",
+      "name": "FRED",
+      "status": "fallback",
+      "detail": "Using the public FRED CSV export path because FRED_API_KEY is unset.",
+      "link": "https://fred.stlouisfed.org/docs/api/fred/"
+    },
+    {
+      "id": "bis",
+      "name": "BIS",
+      "status": "live",
+      "detail": "Using the BIS bulk-download portal for quarterly leverage datasets.",
+      "link": "https://data.bis.org/bulkdownload"
+    },
+    {
+      "id": "world-bank",
+      "name": "World Bank",
+      "status": "live",
+      "detail": "Direct World Bank API pull for annual long-run context.",
+      "link": "https://datahelpdesk.worldbank.org/knowledgebase/topics/125589"
+    }
+  ],
+  "notes": [
+    "The site is static: all source calls happen at build time, and the browser only reads a compiled JSON file.",
+    "FRED uses the official API when FRED_API_KEY is present and falls back to the public CSV export path when it is not.",
+    "FRED-carried series still show their original agency in the UI, including BEA, the Census Bureau, and the Board of Governors.",
+    "IMF is marked optional because the public portal path was sign-in gated on 2026-04-13."
+  ]
+}
