@@ -13,6 +13,7 @@ Static US macro dashboard built from official public data sources. The site refr
 
 - BLS: unemployment, payrolls, CPI
 - FRED: GDP growth, fed funds, yield curve spread, housing starts, industrial production
+- IMF: WEO annual real GDP growth path
 - BIS: private-sector debt service ratio and private credit to GDP
 - World Bank: annual GDP growth and central government debt
 
@@ -21,7 +22,7 @@ Static US macro dashboard built from official public data sources. The site refr
 - FRED uses the official API if `FRED_API_KEY` is set.
 - If `FRED_API_KEY` is missing, the build falls back to FRED's public CSV export path and retries with `curl` if the runner's `fetch()` call is flaky.
 - BLS uses the public API by default and merges 10-year request windows so the latest monthly releases still show up even when the configured history window is longer.
-- IMF is left as an optional extension. As of 2026-04-13, the public IMF portal redirects anonymous API traffic to sign-in, and the legacy `dataservices.imf.org` path was not reachable from this build environment. If you want IMF included, provide a working authenticated export or API path.
+- IMF now uses the public SDMX 3.0 API at `https://api.imf.org/external/sdmx/3.0`, which is distinct from the sign-in-gated `data.imf.org` portal.
 - Several FRED-carried series still surface their original agency in the UI, including BEA, the Census Bureau, and the Federal Reserve Board.
 
 ## Local development
@@ -82,6 +83,5 @@ This repo is configured for GitHub Pages because it is simple, cheap, and does n
 
 ## Next extensions
 
-- Add an IMF adapter once you have a stable export URL or authenticated API path
 - Add direct Treasury or Census adapters where you want the transport layer to come from the source agency instead of FRED
 - Add indicator filtering, download buttons, or alerting on threshold breaches

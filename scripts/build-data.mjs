@@ -21,6 +21,8 @@ const ANNUAL_HISTORY_POINTS = 25
 const DAILY_HISTORY_POINTS = 365
 const FRED_API_KEY = process.env.FRED_API_KEY?.trim() || ''
 const BLS_API_KEY = process.env.BLS_API_KEY?.trim() || ''
+const IMF_WEO_SOURCE_URL =
+  'https://api.imf.org/external/sdmx/3.0/data/dataflow/IMF.RES/WEO/+/USA.NGDP_RPCH.A?format=sdmx-json'
 const DEFAULT_HEADERS = {
   accept: '*/*',
   'user-agent': 'macro-signals-build/1.0',
@@ -183,6 +185,10 @@ function toQuarterDate(periodKey) {
   }
   const [month, day] = quarterMap[quarterCode]
   return `${year}-${month}-${day}`
+}
+
+function toAnnualDate(year) {
+  return `${year}-12-31`
 }
 
 function buildYearWindows(startYear, endYear, span = BLS_WINDOW_SPAN) {
@@ -954,13 +960,85 @@ async function buildWorldBankIndicators() {
   }
 }
 
-function buildImfStatus() {
+function parseImfSingleSeries(json, frequency) {
+  const structure = json?.data?.structures?.[0]
+  const dataSet = json?.data?.dataSets?.[0]
+  const timeDimension = structure?.dimensions?.observation?.find(
+    (dimension) => dimension.id === 'TIME_PERIOD',
+  )
+  const seriesEntries = Object.values(dataSet?.series ?? {})
+  const series = seriesEntries.find((entry) =>
+    Object.values(entry?.observations ?? {}).some(
+      (observation) => safeNumber(observation?.[0]) != null,
+    ),
+  )
+
+  if (!timeDimension || !series) {
+    throw new Error('IMF response did not include a usable time series.')
+  }
+
+  return Object.entries(series.observations)
+    .map(([observationIndex, observation]) => {
+      const period = timeDimension.values?.[Number(observationIndex)]?.value
+      const value = safeNumber(observation?.[0])
+
+      if (!period || value == null) {
+        return null
+      }
+
+      const date =
+        frequency === 'annual'
+          ? toAnnualDate(period)
+          : frequency === 'quarterly'
+            ? toQuarterDate(period)
+            : period
+
+      return {
+        date,
+        label: labelForDate(date, frequency),
+        value,
+      }
+    })
+    .filter(Boolean)
+    .sort((left, right) => left.date.localeCompare(right.date))
+}
+
+async function buildImfIndicators() {
+  const url = new URL(IMF_WEO_SOURCE_URL)
+  const json = await fetchJson(url.toString())
+  const realGdpGrowth = trimPoints(
+    parseImfSingleSeries(json, 'annual'),
+    15,
+  )
+
   return {
-    id: 'imf',
-    name: 'IMF',
-    status: 'setup',
-    detail: `As of ${BUILD_DATE}, the IMF portal redirected anonymous API traffic to sign-in and the legacy dataservices endpoint was not reachable from this build environment. Add a working authenticated IMF export or API path if you want IMF included.`,
-    link: 'https://data.imf.org/',
+    indicators: [
+      buildIndicator({
+        id: 'imf-weo-real-gdp-growth',
+        title: 'IMF WEO GDP growth path',
+        section: 'balance-context',
+        source: 'IMF',
+        sourceUrl: IMF_WEO_SOURCE_URL,
+        origin: 'WEO',
+        frequency: 'annual',
+        visualization: 'bar',
+        unit: 'percent',
+        deltaUnit: 'percentagePoints',
+        description: `The IMF World Economic Outlook annual real GDP growth path currently runs through ${realGdpGrowth.at(-1).label}, with the latest published US projection at ${formatValue(realGdpGrowth.at(-1).value, 'percent')}.`,
+        rationale: 'Annual IMF forecast points are discrete observations, so bars make it easier to compare the growth path year by year across actuals and projections.',
+        showZeroLine: true,
+        series: realGdpGrowth,
+      }),
+    ],
+    sourceStatus: [
+      {
+        id: 'imf',
+        name: 'IMF',
+        status: 'live',
+        detail: 'Using the public IMF SDMX 3.0 API at api.imf.org for WEO annual growth projections.',
+        link: 'https://api.imf.org/external/sdmx/3.0',
+      },
+    ],
   }
 }
 
@@ -1028,10 +1106,11 @@ function buildDashboard(indicators, sourceStatus) {
         id: 'balance-context',
         kicker: 'Leverage and context',
         title: 'Balance-sheet backdrop',
-        description: 'BIS leverage series and World Bank annual context help separate short-cycle moves from slower structural pressure.',
+        description: 'BIS leverage series, World Bank annual context, and IMF WEO projections help separate short-cycle moves from slower structural pressure.',
         indicatorIds: [
           'bis-debt-service-ratio',
           'bis-private-credit-gdp',
+          'imf-weo-real-gdp-growth',
           'worldbank-gdp-growth',
           'worldbank-public-debt',
         ],
@@ -1044,7 +1123,7 @@ function buildDashboard(indicators, sourceStatus) {
       'FRED uses the official API when FRED_API_KEY is present and falls back to the public CSV export path, with a curl retry path to protect CI builds when fetch is flaky.',
       'FRED-carried series still show their original agency in the UI, including BEA, the Census Bureau, and the Board of Governors.',
       'BLS history is fetched in public 10-year windows so the latest 2026 monthly releases still land even when the full lookback window is longer.',
-      `IMF is marked optional because the public portal redirected to sign-in on ${BUILD_DATE}.`,
+      'IMF now uses the public SDMX 3.0 API at api.imf.org; this build is no longer dependent on the sign-in-gated data portal path.',
     ],
   }
 }
@@ -1062,10 +1141,11 @@ async function main() {
   log('refreshing macro dataset')
 
   const existingDashboard = await loadExistingDashboard()
-  const sourceStatus = [buildImfStatus()]
+  const sourceStatus = []
   const indicators = []
 
   const blocks = [
+    ['IMF', buildImfIndicators],
     ['BLS', buildBlsIndicators],
     ['FRED', buildFredIndicators],
     ['BIS', buildBisIndicators],

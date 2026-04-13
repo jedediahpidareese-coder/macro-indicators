@@ -1,10 +1,10 @@
 {
   "title": "Macro Signals",
   "deck": "A static US macro dashboard compiled from official public datasets. The build pipeline refreshes the data first, then ships a simple front-end bundle that can live on GitHub Pages or another static host.",
-  "generatedAt": "2026-04-13T06:09:27.188Z",
+  "generatedAt": "2026-04-13T06:36:27.756Z",
   "highlights": [
     "Unemployment was 4.3% in Mar 26.",
-    "Payrolls changed by 178k in Mar 26, while headline CPI ran 3.5%.",
+    "Payrolls changed by 178k in Mar 26, while headline CPI ran 3.3%.",
     "Real GDP growth last printed at 0.5% and fed funds averaged 3.6%.",
     "The 10Y-2Y spread was 0.5 pp and BIS private credit was 140.4% of GDP."
   ],
@@ -53,16 +53,126 @@
       "id": "balance-context",
       "kicker": "Leverage and context",
       "title": "Balance-sheet backdrop",
-      "description": "BIS leverage series and World Bank annual context help separate short-cycle moves from slower structural pressure.",
+      "description": "BIS leverage series, World Bank annual context, and IMF WEO projections help separate short-cycle moves from slower structural pressure.",
       "indicatorIds": [
         "bis-debt-service-ratio",
         "bis-private-credit-gdp",
+        "imf-weo-real-gdp-growth",
         "worldbank-gdp-growth",
         "worldbank-public-debt"
       ]
     }
   ],
   "indicators": [
+    {
+      "id": "imf-weo-real-gdp-growth",
+      "title": "IMF WEO GDP growth path",
+      "section": "balance-context",
+      "source": "IMF",
+      "sourceUrl": "https://api.imf.org/external/sdmx/3.0/data/dataflow/IMF.RES/WEO/+/USA.NGDP_RPCH.A?format=sdmx-json",
+      "origin": "WEO",
+      "frequency": "annual",
+      "visualization": "bar",
+      "unit": "percent",
+      "latest": {
+        "label": "2030",
+        "date": "2030-12-31",
+        "value": 1.753,
+        "formatted": "1.8%"
+      },
+      "description": "The IMF World Economic Outlook annual real GDP growth path currently runs through 2030, with the latest published US projection at 1.8%.",
+      "rationale": "Annual IMF forecast points are discrete observations, so bars make it easier to compare the growth path year by year across actuals and projections.",
+      "showZeroLine": true,
+      "series": [
+        {
+          "date": "2016-12-31",
+          "label": "2016",
+          "value": 1.82
+        },
+        {
+          "date": "2017-12-31",
+          "label": "2017",
+          "value": 2.458
+        },
+        {
+          "date": "2018-12-31",
+          "label": "2018",
+          "value": 2.967
+        },
+        {
+          "date": "2019-12-31",
+          "label": "2019",
+          "value": 2.584
+        },
+        {
+          "date": "2020-12-31",
+          "label": "2020",
+          "value": -2.081
+        },
+        {
+          "date": "2021-12-31",
+          "label": "2021",
+          "value": 6.152
+        },
+        {
+          "date": "2022-12-31",
+          "label": "2022",
+          "value": 2.524
+        },
+        {
+          "date": "2023-12-31",
+          "label": "2023",
+          "value": 2.935
+        },
+        {
+          "date": "2024-12-31",
+          "label": "2024",
+          "value": 2.793
+        },
+        {
+          "date": "2025-12-31",
+          "label": "2025",
+          "value": 2.017
+        },
+        {
+          "date": "2026-12-31",
+          "label": "2026",
+          "value": 2.102
+        },
+        {
+          "date": "2027-12-31",
+          "label": "2027",
+          "value": 2.055
+        },
+        {
+          "date": "2028-12-31",
+          "label": "2028",
+          "value": 2.093
+        },
+        {
+          "date": "2029-12-31",
+          "label": "2029",
+          "value": 1.881
+        },
+        {
+          "date": "2030-12-31",
+          "label": "2030",
+          "value": 1.753
+        }
+      ],
+      "previous": {
+        "label": "2029",
+        "date": "2029-12-31",
+        "value": 1.881,
+        "formatted": "1.9%"
+      },
+      "delta": {
+        "label": "vs 2029",
+        "value": -0.1280000000000001,
+        "formatted": "-0.1 pp",
+        "direction": "down"
+      }
+    },
     {
       "id": "unemployment-rate",
       "title": "Unemployment rate",
@@ -1221,10 +1331,10 @@
       "latest": {
         "label": "Mar 26",
         "date": "2026-03-01",
-        "value": 3.488444976526419,
-        "formatted": "3.5%"
+        "value": 3.320205581223676,
+        "formatted": "3.3%"
       },
-      "description": "Headline CPI ran 3.5% year over year in Mar 26; the dashed line tracks core CPI at 2.8%.",
+      "description": "Headline CPI ran 3.3% year over year in Mar 26; the dashed line tracks core CPI at 2.7%.",
       "rationale": "Two lines are the clearest way to compare whether broad inflation and underlying inflation are diverging or converging.",
       "secondaryLabel": "Core CPI",
       "showZeroLine": false,
@@ -1232,734 +1342,734 @@
         {
           "date": "2016-03-01",
           "label": "Mar 16",
-          "value": 0.8525362211427311,
-          "secondaryValue": 2.194825504942608
+          "value": 0.8916160965521974,
+          "secondaryValue": 2.142426948557669
         },
         {
           "date": "2016-04-01",
           "label": "Apr 16",
-          "value": 1.125110418894419,
-          "secondaryValue": 2.146384231726784
+          "value": 1.1726257503534734,
+          "secondaryValue": 2.1566547612141838
         },
         {
           "date": "2016-05-01",
           "label": "May 16",
-          "value": 1.0193225541935647,
-          "secondaryValue": 2.240633737955308
+          "value": 1.0784764621246252,
+          "secondaryValue": 2.254559597497605
         },
         {
           "date": "2016-06-01",
           "label": "Jun 16",
-          "value": 0.9973264945230832,
-          "secondaryValue": 2.2446503874497625
+          "value": 1.0792865347959444,
+          "secondaryValue": 2.262211646506709
         },
         {
           "date": "2016-07-01",
           "label": "Jul 16",
-          "value": 0.8271388704987093,
-          "secondaryValue": 2.1894438119751163
+          "value": 0.868363343051836,
+          "secondaryValue": 2.1701399624842868
         },
         {
           "date": "2016-08-01",
           "label": "Aug 16",
-          "value": 1.0628745027610345,
-          "secondaryValue": 2.3189683949375777
+          "value": 1.0553158595656909,
+          "secondaryValue": 2.3087345614186794
         },
         {
           "date": "2016-09-01",
           "label": "Sep 16",
-          "value": 1.4637836474815626,
-          "secondaryValue": 2.2074383934845168
+          "value": 1.5486446201652213,
+          "secondaryValue": 2.2711206825691734
         },
         {
           "date": "2016-10-01",
           "label": "Oct 16",
-          "value": 1.6359875209176076,
-          "secondaryValue": 2.1448039838514563
+          "value": 1.685924966243647,
+          "secondaryValue": 2.2045551507991186
         },
         {
           "date": "2016-11-01",
           "label": "Nov 16",
-          "value": 1.6925371625037902,
-          "secondaryValue": 2.1108265901874486
+          "value": 1.6843334719788983,
+          "secondaryValue": 2.1454219398053485
         },
         {
           "date": "2016-12-01",
           "label": "Dec 16",
-          "value": 2.0746221329669092,
-          "secondaryValue": 2.196661730501803
+          "value": 2.0507989115119822,
+          "secondaryValue": 2.197123661300278
         },
         {
           "date": "2017-01-01",
           "label": "Jan 17",
-          "value": 2.5000422090529986,
-          "secondaryValue": 2.271723483609242
+          "value": 2.510393348257119,
+          "secondaryValue": 2.250209222102019
         },
         {
           "date": "2017-02-01",
           "label": "Feb 17",
-          "value": 2.73795817148931,
-          "secondaryValue": 2.2236242266362725
+          "value": 2.810361681329418,
+          "secondaryValue": 2.235346829049733
         },
         {
           "date": "2017-03-01",
           "label": "Mar 17",
-          "value": 2.3806124334402696,
-          "secondaryValue": 2.001964620592791
+          "value": 2.441196236559133,
+          "secondaryValue": 2.0458454819387253
         },
         {
           "date": "2017-04-01",
           "label": "Apr 17",
-          "value": 2.199689878417295,
-          "secondaryValue": 1.8826520697026647
+          "value": 2.176223471915387,
+          "secondaryValue": 1.8965650108902485
         },
         {
           "date": "2017-05-01",
           "label": "May 17",
-          "value": 1.87487772084136,
-          "secondaryValue": 1.733429208544742
+          "value": 1.8563431667619825,
+          "secondaryValue": 1.737093191225922
         },
         {
           "date": "2017-06-01",
           "label": "Jun 17",
-          "value": 1.6334879552564587,
-          "secondaryValue": 1.703027514790511
+          "value": 1.640565809959122,
+          "secondaryValue": 1.6991193342490174
         },
         {
           "date": "2017-07-01",
           "label": "Jul 17",
-          "value": 1.7279784563724987,
-          "secondaryValue": 1.6920692327563966
+          "value": 1.7251073506565968,
+          "secondaryValue": 1.676962744473006
         },
         {
           "date": "2017-08-01",
           "label": "Aug 17",
-          "value": 1.938974212058184,
-          "secondaryValue": 1.6844021620924996
+          "value": 1.9281215572969739,
+          "secondaryValue": 1.6552412618799366
         },
         {
           "date": "2017-09-01",
           "label": "Sep 17",
-          "value": 2.232963865003227,
-          "secondaryValue": 1.692591594935898
+          "value": 2.1805652303711875,
+          "secondaryValue": 1.5953898457655855
         },
         {
           "date": "2017-10-01",
           "label": "Oct 17",
-          "value": 2.041128701976179,
-          "secondaryValue": 1.7735476570713256
+          "value": 2.020757753132481,
+          "secondaryValue": 1.7596390813271203
         },
         {
           "date": "2017-11-01",
           "label": "Nov 17",
-          "value": 2.2025829386831743,
-          "secondaryValue": 1.7112913127389835
+          "value": 2.172493864295564,
+          "secondaryValue": 1.7376072726981246
         },
         {
           "date": "2017-12-01",
           "label": "Dec 17",
-          "value": 2.1090824745684142,
-          "secondaryValue": 1.7757512021643
+          "value": 2.1299307195522554,
+          "secondaryValue": 1.7701664532650474
         },
         {
           "date": "2018-01-01",
           "label": "Jan 18",
-          "value": 2.0705076202751584,
-          "secondaryValue": 1.821395296761478
+          "value": 2.151318868063942,
+          "secondaryValue": 1.8912671130328524
         },
         {
           "date": "2018-02-01",
           "label": "Feb 18",
-          "value": 2.211795421238657,
-          "secondaryValue": 1.847552987740047
+          "value": 2.263468931091857,
+          "secondaryValue": 1.87770420481439
         },
         {
           "date": "2018-03-01",
           "label": "Mar 18",
-          "value": 2.3597114039729186,
-          "secondaryValue": 2.117075888415783
+          "value": 2.3309497646499278,
+          "secondaryValue": 2.1227843662331143
         },
         {
           "date": "2018-04-01",
           "label": "Apr 18",
-          "value": 2.462743943334802,
-          "secondaryValue": 2.1391500623902138
+          "value": 2.4709963021052985,
+          "secondaryValue": 2.150644636125891
         },
         {
           "date": "2018-05-01",
           "label": "May 18",
-          "value": 2.8010117148075615,
-          "secondaryValue": 2.2371791053666037
+          "value": 2.781921607842499,
+          "secondaryValue": 2.2729984488724395
         },
         {
           "date": "2018-06-01",
           "label": "Jun 18",
-          "value": 2.8715478353166874,
-          "secondaryValue": 2.255033450522587
+          "value": 2.807550693594029,
+          "secondaryValue": 2.2455173071270216
         },
         {
           "date": "2018-07-01",
           "label": "Jul 18",
-          "value": 2.949515086647112,
-          "secondaryValue": 2.354169312841361
+          "value": 2.8541247855619214,
+          "secondaryValue": 2.2675952933706367
         },
         {
           "date": "2018-08-01",
           "label": "Aug 18",
-          "value": 2.699180104187448,
-          "secondaryValue": 2.199160263011959
+          "value": 2.6429238568742606,
+          "secondaryValue": 2.1208941334864564
         },
         {
           "date": "2018-09-01",
           "label": "Sep 18",
-          "value": 2.27697219419899,
-          "secondaryValue": 2.169675932332034
+          "value": 2.3320551058088284,
+          "secondaryValue": 2.1976804898501583
         },
         {
           "date": "2018-10-01",
           "label": "Oct 18",
-          "value": 2.5224699286070384,
-          "secondaryValue": 2.138875089694755
+          "value": 2.4920324702180574,
+          "secondaryValue": 2.126409125691236
         },
         {
           "date": "2018-11-01",
           "label": "Nov 18",
-          "value": 2.1766010321523983,
-          "secondaryValue": 2.214271061808668
+          "value": 2.1473285776677837,
+          "secondaryValue": 2.2153843729315796
         },
         {
           "date": "2018-12-01",
           "label": "Dec 18",
-          "value": 1.9101588486313719,
-          "secondaryValue": 2.1789886337642805
+          "value": 2.0023809043401015,
+          "secondaryValue": 2.2485295505299887
         },
         {
           "date": "2019-01-01",
           "label": "Jan 19",
-          "value": 1.5512351381991145,
-          "secondaryValue": 2.1536455674329864
+          "value": 1.4875893578291313,
+          "secondaryValue": 2.179432924248841
         },
         {
           "date": "2019-02-01",
           "label": "Feb 19",
-          "value": 1.5201352659333054,
-          "secondaryValue": 2.084188550450964
+          "value": 1.518861535132186,
+          "secondaryValue": 2.141088963712928
         },
         {
           "date": "2019-03-01",
           "label": "Mar 19",
-          "value": 1.8625227405691738,
-          "secondaryValue": 2.036553524804177
+          "value": 1.883186351306406,
+          "secondaryValue": 2.0665623500122887
         },
         {
           "date": "2019-04-01",
           "label": "Apr 19",
-          "value": 1.9964397755302459,
-          "secondaryValue": 2.064779690691574
+          "value": 2.0005834702090506,
+          "secondaryValue": 2.091337723570907
         },
         {
           "date": "2019-05-01",
           "label": "May 19",
-          "value": 1.7902284687663923,
-          "secondaryValue": 1.9889773137736897
+          "value": 1.795910555360614,
+          "secondaryValue": 1.9724280075443827
         },
         {
           "date": "2019-06-01",
           "label": "Jun 19",
-          "value": 1.6484846560762445,
-          "secondaryValue": 2.126528442317923
+          "value": 1.671194894390041,
+          "secondaryValue": 2.074600134421647
         },
         {
           "date": "2019-07-01",
           "label": "Jul 19",
-          "value": 1.811464806393509,
-          "secondaryValue": 2.210054020095613
+          "value": 1.8263313350370576,
+          "secondaryValue": 2.1657049503490353
         },
         {
           "date": "2019-08-01",
           "label": "Aug 19",
-          "value": 1.7497798894291428,
-          "secondaryValue": 2.386323116754253
+          "value": 1.7376412106666417,
+          "secondaryValue": 2.3211356735985316
         },
         {
           "date": "2019-09-01",
           "label": "Sep 19",
-          "value": 1.7113045131695266,
-          "secondaryValue": 2.3577075328233357
+          "value": 1.6844977040391538,
+          "secondaryValue": 2.330009908347776
         },
         {
           "date": "2019-10-01",
           "label": "Oct 19",
-          "value": 1.7640429444213825,
-          "secondaryValue": 2.314494929804734
+          "value": 1.7339736996186215,
+          "secondaryValue": 2.3378148209658134
         },
         {
           "date": "2019-11-01",
           "label": "Nov 19",
-          "value": 2.0512779818916256,
-          "secondaryValue": 2.3168213658555357
+          "value": 2.092290394862913,
+          "secondaryValue": 2.3546960942649258
         },
         {
           "date": "2019-12-01",
           "label": "Dec 19",
-          "value": 2.285129740121714,
-          "secondaryValue": 2.2587356175434032
+          "value": 2.3195274699624555,
+          "secondaryValue": 2.2905988164406295
         },
         {
           "date": "2020-01-01",
           "label": "Jan 20",
-          "value": 2.486571955250451,
-          "secondaryValue": 2.2612466458046625
+          "value": 2.599767976845199,
+          "secondaryValue": 2.281739183789293
         },
         {
           "date": "2020-02-01",
           "label": "Feb 20",
-          "value": 2.3348735639459393,
-          "secondaryValue": 2.3568249883192767
+          "value": 2.3413166797595175,
+          "secondaryValue": 2.367661360103538
         },
         {
           "date": "2020-03-01",
           "label": "Mar 20",
-          "value": 1.539326991919816,
-          "secondaryValue": 2.0913854473792752
+          "value": 1.494039964290925,
+          "secondaryValue": 2.097741687598193
         },
         {
           "date": "2020-04-01",
           "label": "Apr 20",
-          "value": 0.3290966863368166,
-          "secondaryValue": 1.432154674229604
+          "value": 0.3130472940411225,
+          "secondaryValue": 1.4309324152566505
         },
         {
           "date": "2020-05-01",
           "label": "May 20",
-          "value": 0.1179263702107137,
-          "secondaryValue": 1.2220571994363851
+          "value": 0.19820130358485843,
+          "secondaryValue": 1.2184564692601902
         },
         {
           "date": "2020-06-01",
           "label": "Jun 20",
-          "value": 0.6457330475554879,
-          "secondaryValue": 1.1874137937585731
+          "value": 0.7166562831830586,
+          "secondaryValue": 1.1836841884912457
         },
         {
           "date": "2020-07-01",
           "label": "Jul 20",
-          "value": 0.9860818253037064,
-          "secondaryValue": 1.5696258242717198
+          "value": 0.9968647625898089,
+          "secondaryValue": 1.560695837131585
         },
         {
           "date": "2020-08-01",
           "label": "Aug 20",
-          "value": 1.3096453823307064,
-          "secondaryValue": 1.7363884483039227
+          "value": 1.281069849552396,
+          "secondaryValue": 1.722393387828426
         },
         {
           "date": "2020-09-01",
           "label": "Sep 20",
-          "value": 1.3713248610564606,
-          "secondaryValue": 1.7132790467333463
+          "value": 1.3910228912373777,
+          "secondaryValue": 1.7190644053436677
         },
         {
           "date": "2020-10-01",
           "label": "Oct 20",
-          "value": 1.1820661677274849,
-          "secondaryValue": 1.6105848131925151
+          "value": 1.2303863428671598,
+          "secondaryValue": 1.6364116692455581
         },
         {
           "date": "2020-11-01",
           "label": "Nov 20",
-          "value": 1.1745357842679691,
-          "secondaryValue": 1.6464987854006703
+          "value": 1.1757452138405928,
+          "secondaryValue": 1.6693780408814953
         },
         {
           "date": "2020-12-01",
           "label": "Dec 20",
-          "value": 1.36200549471931,
-          "secondaryValue": 1.619642553833958
+          "value": 1.3204191315779377,
+          "secondaryValue": 1.624313961356299
         },
         {
           "date": "2021-01-01",
           "label": "Jan 21",
-          "value": 1.3997697415600938,
-          "secondaryValue": 1.4101291709899009
+          "value": 1.3738437137002326,
+          "secondaryValue": 1.376370371481273
         },
         {
           "date": "2021-02-01",
           "label": "Feb 21",
-          "value": 1.6762152173745013,
-          "secondaryValue": 1.2826077195923398
+          "value": 1.6698167791706877,
+          "secondaryValue": 1.2802483449900892
         },
         {
           "date": "2021-03-01",
           "label": "Mar 21",
-          "value": 2.619762508959185,
-          "secondaryValue": 1.6463907344227007
+          "value": 2.6678187820641943,
+          "secondaryValue": 1.6494791315614181
         },
         {
           "date": "2021-04-01",
           "label": "Apr 21",
-          "value": 4.159694838702114,
-          "secondaryValue": 2.9610393514951836
+          "value": 4.133077115360577,
+          "secondaryValue": 2.9780316542864407
         },
         {
           "date": "2021-05-01",
           "label": "May 21",
-          "value": 4.992706537594479,
-          "secondaryValue": 3.7976064620258145
+          "value": 4.91825708946763,
+          "secondaryValue": 3.787696110198483
         },
         {
           "date": "2021-06-01",
           "label": "Jun 21",
-          "value": 5.391451413321334,
-          "secondaryValue": 4.474619041539304
+          "value": 5.295632620349991,
+          "secondaryValue": 4.439362194328368
         },
         {
           "date": "2021-07-01",
           "label": "Jul 21",
-          "value": 5.365475239385408,
-          "secondaryValue": 4.2745131731807415
+          "value": 5.245169381309239,
+          "secondaryValue": 4.2107192143281935
         },
         {
           "date": "2021-08-01",
           "label": "Aug 21",
-          "value": 5.251271554874999,
-          "secondaryValue": 4.000282784384361
+          "value": 5.152015301793956,
+          "secondaryValue": 3.9396919775577217
         },
         {
           "date": "2021-09-01",
           "label": "Sep 21",
-          "value": 5.390348855079157,
-          "secondaryValue": 4.025214269254515
+          "value": 5.35121559094913,
+          "secondaryValue": 4.002855729865798
         },
         {
           "date": "2021-10-01",
           "label": "Oct 21",
-          "value": 6.221868903328887,
-          "secondaryValue": 4.562837877977798
+          "value": 6.235042390298054,
+          "secondaryValue": 4.590317334184914
         },
         {
           "date": "2021-11-01",
           "label": "Nov 21",
-          "value": 6.8090028398064755,
-          "secondaryValue": 4.928508607541389
+          "value": 6.901970403700871,
+          "secondaryValue": 4.9725721439656905
         },
         {
           "date": "2021-12-01",
           "label": "Dec 21",
-          "value": 7.036402865545134,
-          "secondaryValue": 5.453410888992897
+          "value": 7.174340285065546,
+          "secondaryValue": 5.4889935303930955
         },
         {
           "date": "2022-01-01",
           "label": "Jan 22",
-          "value": 7.4798724682891145,
-          "secondaryValue": 6.020648366109984
+          "value": 7.558805726967834,
+          "secondaryValue": 6.054285154241885
         },
         {
           "date": "2022-02-01",
           "label": "Feb 22",
-          "value": 7.871063897739283,
-          "secondaryValue": 6.4142063421698134
+          "value": 7.937278766517815,
+          "secondaryValue": 6.455115161765636
         },
         {
           "date": "2022-03-01",
           "label": "Mar 22",
-          "value": 8.54245555484244,
-          "secondaryValue": 6.47447858586081
+          "value": 8.572204966013853,
+          "secondaryValue": 6.482378554404157
         },
         {
           "date": "2022-04-01",
           "label": "Apr 22",
-          "value": 8.258629340882372,
-          "secondaryValue": 6.160573497634755
+          "value": 8.23175077077723,
+          "secondaryValue": 6.158737119052833
         },
         {
           "date": "2022-05-01",
           "label": "May 22",
-          "value": 8.581511543676516,
-          "secondaryValue": 6.0215373351262995
+          "value": 8.538171195642057,
+          "secondaryValue": 6.025447879040899
         },
         {
           "date": "2022-06-01",
           "label": "Jun 22",
-          "value": 9.05975796478415,
-          "secondaryValue": 5.916942829004589
+          "value": 8.97936110310581,
+          "secondaryValue": 5.9063356515913865
         },
         {
           "date": "2022-07-01",
           "label": "Jul 22",
-          "value": 8.524814745625516,
-          "secondaryValue": 5.910885343153762
+          "value": 8.462576727730106,
+          "secondaryValue": 5.899916740834313
         },
         {
           "date": "2022-08-01",
           "label": "Aug 22",
-          "value": 8.262692503116233,
-          "secondaryValue": 6.322203021749005
+          "value": 8.222579178218837,
+          "secondaryValue": 6.286089097732238
         },
         {
           "date": "2022-09-01",
           "label": "Sep 22",
-          "value": 8.201669643833617,
-          "secondaryValue": 6.630604107415926
+          "value": 8.19210689642582,
+          "secondaryValue": 6.624287624509299
         },
         {
           "date": "2022-10-01",
           "label": "Oct 22",
-          "value": 7.7454273308049135,
-          "secondaryValue": 6.284421750107408
+          "value": 7.758813957693,
+          "secondaryValue": 6.294999786983254
         },
         {
           "date": "2022-11-01",
           "label": "Nov 22",
-          "value": 7.110322794191731,
-          "secondaryValue": 5.957829066962803
+          "value": 7.122856456533983,
+          "secondaryValue": 5.969880665899798
         },
         {
           "date": "2022-12-01",
           "label": "Dec 22",
-          "value": 6.454401331410824,
-          "secondaryValue": 5.707834932442898
+          "value": 6.404600402357159,
+          "secondaryValue": 5.685531944736657
         },
         {
           "date": "2023-01-01",
           "label": "Jan 23",
-          "value": 6.410146968856258,
-          "secondaryValue": 5.582595560777077
+          "value": 6.3271785179601014,
+          "secondaryValue": 5.539533472591773
         },
         {
           "date": "2023-02-01",
           "label": "Feb 23",
-          "value": 6.035613077866587,
-          "secondaryValue": 5.53775441836568
+          "value": 5.9578207381370785,
+          "secondaryValue": 5.498260329618092
         },
         {
           "date": "2023-03-01",
           "label": "Mar 23",
-          "value": 4.984974122099168,
-          "secondaryValue": 5.5896026684640745
+          "value": 4.917719362889955,
+          "secondaryValue": 5.566741392671319
         },
         {
           "date": "2023-04-01",
           "label": "Apr 23",
-          "value": 4.930320398188925,
-          "secondaryValue": 5.519415773295833
+          "value": 4.950079879124361,
+          "secondaryValue": 5.514364195873514
         },
         {
           "date": "2023-05-01",
           "label": "May 23",
-          "value": 4.04760927279197,
-          "secondaryValue": 5.329805200577094
+          "value": 4.131851231385043,
+          "secondaryValue": 5.33754703608468
         },
         {
           "date": "2023-06-01",
           "label": "Jun 23",
-          "value": 2.9691776545588935,
-          "secondaryValue": 4.828967015067198
+          "value": 3.0706170729970865,
+          "secondaryValue": 4.853596327155243
         },
         {
           "date": "2023-07-01",
           "label": "Jul 23",
-          "value": 3.1777801779421764,
-          "secondaryValue": 4.652861868586069
+          "value": 3.2877492684283056,
+          "secondaryValue": 4.700970557935245
         },
         {
           "date": "2023-08-01",
           "label": "Aug 23",
-          "value": 3.665112384399559,
-          "secondaryValue": 4.349245233496426
+          "value": 3.722504803505293,
+          "secondaryValue": 4.399143440066083
         },
         {
           "date": "2023-09-01",
           "label": "Sep 23",
-          "value": 3.6996981213444364,
-          "secondaryValue": 4.146534334979661
+          "value": 3.687206638119252,
+          "secondaryValue": 4.128747996485883
         },
         {
           "date": "2023-10-01",
           "label": "Oct 23",
-          "value": 3.2411446518932094,
-          "secondaryValue": 4.030870487613384
+          "value": 3.2512659098611847,
+          "secondaryValue": 4.027401561127456
         },
         {
           "date": "2023-11-01",
           "label": "Nov 23",
-          "value": 3.1372707088417875,
-          "secondaryValue": 4.007343124165544
+          "value": 3.1333462745911866,
+          "secondaryValue": 4.017980521102142
         },
         {
           "date": "2023-12-01",
           "label": "Dec 23",
-          "value": 3.3521228314302216,
-          "secondaryValue": 3.9298530886699288
+          "value": 3.315909942710283,
+          "secondaryValue": 3.9154727698627005
         },
         {
           "date": "2024-01-01",
           "label": "Jan 24",
-          "value": 3.0908847812280498,
-          "secondaryValue": 3.861744192977925
+          "value": 3.0883429864855745,
+          "secondaryValue": 3.8583540949372592
         },
         {
           "date": "2024-02-01",
           "label": "Feb 24",
-          "value": 3.153171120861603,
-          "secondaryValue": 3.7524957978494062
+          "value": 3.157074141648697,
+          "secondaryValue": 3.7619647313751448
         },
         {
           "date": "2024-03-01",
           "label": "Mar 24",
-          "value": 3.4773850700380278,
-          "secondaryValue": 3.8012806243371076
+          "value": 3.486834912083652,
+          "secondaryValue": 3.8161935067360915
         },
         {
           "date": "2024-04-01",
           "label": "Apr 24",
-          "value": 3.3573639501191646,
-          "secondaryValue": 3.6099824372187617
+          "value": 3.3607951262196822,
+          "secondaryValue": 3.6260251717590903
         },
         {
           "date": "2024-05-01",
           "label": "May 24",
-          "value": 3.2690290569400307,
-          "secondaryValue": 3.418739613626926
+          "value": 3.244278584003115,
+          "secondaryValue": 3.394419668976649
         },
         {
           "date": "2024-06-01",
           "label": "Jun 24",
-          "value": 2.971397107263316,
-          "secondaryValue": 3.267294681298747
+          "value": 2.9702579486470926,
+          "secondaryValue": 3.265417323447559
         },
         {
           "date": "2024-07-01",
           "label": "Jul 24",
-          "value": 2.8947531984913026,
-          "secondaryValue": 3.171278789406666
+          "value": 2.9414757935583116,
+          "secondaryValue": 3.2301916105644803
         },
         {
           "date": "2024-08-01",
           "label": "Aug 24",
-          "value": 2.5307302964569716,
-          "secondaryValue": 3.197002286337116
+          "value": 2.6071444906920425,
+          "secondaryValue": 3.2850959364300074
         },
         {
           "date": "2024-09-01",
           "label": "Sep 24",
-          "value": 2.4406330310699866,
-          "secondaryValue": 3.3112731929077146
+          "value": 2.4264830315416814,
+          "secondaryValue": 3.282357449466908
         },
         {
           "date": "2024-10-01",
           "label": "Oct 24",
-          "value": 2.597904904914664,
-          "secondaryValue": 3.332905131993059
+          "value": 2.5788440538713355,
+          "secondaryValue": 3.2986897067653
         },
         {
           "date": "2024-11-01",
           "label": "Nov 24",
-          "value": 2.7493803960905545,
-          "secondaryValue": 3.3186138906182836
+          "value": 2.7194724612848353,
+          "secondaryValue": 3.285935619350043
         },
         {
           "date": "2024-12-01",
           "label": "Dec 24",
-          "value": 2.888057219980061,
-          "secondaryValue": 3.2381447033891586
+          "value": 2.870690967509984,
+          "secondaryValue": 3.2133335461932733
         },
         {
           "date": "2025-01-01",
           "label": "Jan 25",
-          "value": 3.000483112150115,
-          "secondaryValue": 3.2583707189842563
+          "value": 2.990978307899965,
+          "secondaryValue": 3.2829704853985793
         },
         {
           "date": "2025-02-01",
           "label": "Feb 25",
-          "value": 2.821548951747508,
-          "secondaryValue": 3.117440610743179
+          "value": 2.8015834477613346,
+          "secondaryValue": 3.1375568822806
         },
         {
           "date": "2025-03-01",
           "label": "Mar 25",
-          "value": 2.39072525389649,
-          "secondaryValue": 2.7894464628115756
+          "value": 2.3819814628055505,
+          "secondaryValue": 2.80878305007703
         },
         {
           "date": "2025-04-01",
           "label": "Apr 25",
-          "value": 2.3112888616734963,
-          "secondaryValue": 2.779123083986939
+          "value": 2.3253882302578393,
+          "secondaryValue": 2.7760200724699224
         },
         {
           "date": "2025-05-01",
           "label": "May 25",
-          "value": 2.354896535474675,
-          "secondaryValue": 2.786940297336399
+          "value": 2.377265107368083,
+          "secondaryValue": 2.7658403935930913
         },
         {
           "date": "2025-06-01",
           "label": "Jun 25",
-          "value": 2.669213018222318,
-          "secondaryValue": 2.9344551618636783
+          "value": 2.68045386591023,
+          "secondaryValue": 2.9108954426960736
         },
         {
           "date": "2025-07-01",
           "label": "Jul 25",
-          "value": 2.7049023971513897,
-          "secondaryValue": 3.0593896257682998
+          "value": 2.7426180521671357,
+          "secondaryValue": 3.0544930080893016
         },
         {
           "date": "2025-08-01",
           "label": "Aug 25",
-          "value": 2.916174284298405,
-          "secondaryValue": 3.1101472734261093
+          "value": 2.9385917430316257,
+          "secondaryValue": 3.1118060985144607
         },
         {
           "date": "2025-09-01",
           "label": "Sep 25",
-          "value": 3.0126767755256165,
-          "secondaryValue": 3.019224001818695
+          "value": 3.0225715847133356,
+          "secondaryValue": 3.019966825885779
         },
         {
           "date": "2025-11-01",
           "label": "Nov 25",
-          "value": 2.6794312940341714,
-          "secondaryValue": 2.693639318991301
+          "value": 2.9882996283635057,
+          "secondaryValue": 2.894343411110528
         },
         {
           "date": "2025-12-01",
           "label": "Dec 25",
-          "value": 2.713530886580678,
-          "secondaryValue": 2.658512115348169
+          "value": 3.0022620431683724,
+          "secondaryValue": 2.837998245815228
         },
         {
           "date": "2026-01-01",
           "label": "Jan 26",
-          "value": 3.056668937437617,
-          "secondaryValue": 3.087821072212711
+          "value": 2.8286797395498917,
+          "secondaryValue": 2.949337837461599
         },
         {
           "date": "2026-02-01",
           "label": "Feb 26",
-          "value": 2.86900598417861,
-          "secondaryValue": 2.902650057744219
+          "value": 2.6645890876940963,
+          "secondaryValue": 2.7335062438778035
         },
         {
           "date": "2026-03-01",
           "label": "Mar 26",
-          "value": 3.488444976526419,
-          "secondaryValue": 2.809821307785966
+          "value": 3.320205581223676,
+          "secondaryValue": 2.6730984898529937
         }
       ],
       "previous": {
         "label": "Feb 26",
         "date": "2026-02-01",
-        "value": 2.86900598417861,
-        "formatted": "2.9%"
+        "value": 2.6645890876940963,
+        "formatted": "2.7%"
       },
       "delta": {
         "label": "vs Feb 26",
-        "value": 0.619438992347809,
-        "formatted": "+0.6 pp",
+        "value": 0.6556164935295796,
+        "formatted": "+0.7 pp",
         "direction": "up"
       }
     },
@@ -6745,22 +6855,22 @@
     {
       "id": "imf",
       "name": "IMF",
-      "status": "setup",
-      "detail": "As of 2026-04-13, the IMF portal redirected anonymous API traffic to sign-in and the legacy dataservices endpoint was not reachable from this build environment. Add a working authenticated IMF export or API path if you want IMF included.",
-      "link": "https://data.imf.org/"
+      "status": "live",
+      "detail": "Using the public IMF SDMX 3.0 API at api.imf.org for WEO annual growth projections.",
+      "link": "https://api.imf.org/external/sdmx/3.0"
     },
     {
       "id": "bls",
       "name": "BLS",
-      "status": "live",
-      "detail": "Direct public BLS API pull for labor market and CPI series, merged across 10-year windows so current 2026 releases stay in the build.",
+      "status": "fallback",
+      "detail": "BLS API refresh failed in this build (BLS request failed with status REQUEST_NOT_PROCESSED); the dashboard is temporarily using current BLS-origin series carried through FRED instead.",
       "link": "https://www.bls.gov/developers/"
     },
     {
       "id": "fred",
       "name": "FRED",
-      "status": "fallback",
-      "detail": "Using the public FRED CSV export path because FRED_API_KEY is unset.",
+      "status": "live",
+      "detail": "Official FRED API is active for all configured series.",
       "link": "https://fred.stlouisfed.org/docs/api/fred/"
     },
     {
@@ -6783,6 +6893,6 @@
     "FRED uses the official API when FRED_API_KEY is present and falls back to the public CSV export path, with a curl retry path to protect CI builds when fetch is flaky.",
     "FRED-carried series still show their original agency in the UI, including BEA, the Census Bureau, and the Board of Governors.",
     "BLS history is fetched in public 10-year windows so the latest 2026 monthly releases still land even when the full lookback window is longer.",
-    "IMF is marked optional because the public portal redirected to sign-in on 2026-04-13."
+    "IMF now uses the public SDMX 3.0 API at api.imf.org; this build is no longer dependent on the sign-in-gated data portal path."
   ]
 }
